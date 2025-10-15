@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Game Launcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body, html {height:100%;font-family:'Inter',sans-serif;background:#0f2027;color:#fff;display:flex;justify-content:center;align-items:center;}
+  .signup-container {background: rgba(0,0,0,0.7); padding:40px; border-radius:15px; width: 350px; text-align:center; box-shadow:0 0 20px #00ffff;}
+  h1 {color:#00ffff; margin-bottom:20px;}
+  input {width:100%; padding:12px; margin:10px 0; border-radius:8px; border:2px solid #00ffff; background:#001833; color:#00ffff; font-size:1rem;}
+  button {width:100%; padding:12px; margin-top:15px; border:none; border-radius:8px; background:#00ffff; color:#001833; font-weight:bold; cursor:pointer; transition:0.3s;}
+  button:hover {background:#00aabb;}
+  .link {margin-top:12px; font-size:0.9rem; color:#00ffff; cursor:pointer;}
+  .error {color:red; font-size:0.85rem; margin-top:10px;}
+</style>
+</head>
+<body>
+
+<div class="signup-container">
+  <h1>Sign Up</h1>
+  <input type="text" id="signup-email" placeholder="Email" />
+  <input type="text" id="signup-username" placeholder="Username" />
+  <input type="password" id="signup-password" placeholder="Password" />
+  <input type="password" id="signup-confirm" placeholder="Confirm Password" />
+  <div class="error" id="signup-error"></div>
+  <button onclick="signUp()">Sign Up</button>
+  <div class="link" onclick="goLogin()">Already have an account? Login</div>
+</div>
+
+<script>
+  function goLogin(){ window.location.href='index.html'; }
+
+  function signUp(){
+    const email = document.getElementById('signup-email').value.trim();
+    const username = document.getElementById('signup-username').value.trim();
+    const password = document.getElementById('signup-password').value.trim();
+    const confirm = document.getElementById('signup-confirm').value.trim();
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+    if(!email || !username || !password){ document.getElementById('signup-error').textContent='All fields required!'; return; }
+    if(password !== confirm){ document.getElementById('signup-error').textContent='Passwords do not match!'; return; }
+    if(users.some(u=>u.email===email)){ document.getElementById('signup-error').textContent='Email already exists!'; return; }
+    if(users.some(u=>u.username===username)){ document.getElementById('signup-error').textContent='Username already exists!'; return; }
+
+    const newUser = {email, username, password};
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    window.location.href='main.html';
+  }
+</script>
+
+</body>
+</html>
