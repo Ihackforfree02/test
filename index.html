@@ -3,255 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Launcher</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Main - Game Launcher</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
-  /* Blue spacey background */
-  body {
-    background: radial-gradient(circle at top, #0a0a3c, #001f4d, #001833);
-    color: #fff;
-  }
-
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    margin-bottom: 50px;
-  }
-
-  header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #00ffff;
-    margin-left: 20px;
-  }
-
-  /* Hamburger button */
-  .hamburger-wrapper {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 100;
-    backdrop-filter: blur(4px);
-  }
-
-  .hamburger {
-    width: 30px;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .hamburger div {
-    height: 3px;
-    background: #00ffff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  /* Sidebar menu */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    transition: right 0.3s;
-    z-index: 99;
-  }
-
-  .sidebar a {
-    text-decoration: none;
-    color: #00ffff;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-
-  .sidebar a:hover { color: #fff; }
-
-  /* Hero section */
-  .hero {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-
-  .hero h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #00ffff;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    color: #ccc;
-    max-width: 600px;
-    margin: 10px auto 0 auto;
-  }
-
-  /* Games grid */
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    width: 100%;
-  }
-
-  .game-card {
-    background: rgba(0,0,0,0.7);
-    border: 2px solid #00ffff;
-    border-radius: 12px;
-    text-align: center;
-    padding: 15px;
-    color: #00ffff;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-
-  .game-card:hover {
-    background: #00ffff;
-    color: #001833;
-    cursor: pointer;
-    box-shadow: 0 0 15px #00ffff, inset 0 0 20px #00ffff;
-  }
-
-  /* Chat button */
-  #chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #0078D7;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    z-index: 1000;
-    font-family: sans-serif;
-    box-shadow: 0 0 10px #0078D7;
-    user-select: none;
-  }
-
-  /* Chat notification bubble */
-  #chat-notification {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    width: 12px;
-    height: 12px;
-    background: red;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    display: none;
-  }
-
+  body, html{height:100%;margin:0;font-family:sans-serif;background:#0f2027;color:#00ffff;}
+  .container{max-width:1200px;margin:50px auto;padding:20px;}
+  .hidden{display:none;}
+  button{padding:10px 15px;border:none;border-radius:5px;background:#00ffff;color:#001833;font-weight:bold;cursor:pointer;}
+  #admin-panel{background:rgba(0,0,0,0.8);padding:20px;border-radius:10px;margin-top:20px;}
+  input{padding:6px;margin:5px;border-radius:5px;border:1px solid #00ffff;background:#001833;color:#00ffff;}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Game Launcher</h1>
-</header>
-
-<!-- Hamburger Button -->
-<div class="hamburger-wrapper" onclick="toggleSidebar()">
-  <div class="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <a href="#">BETA Links</a>
-  <a href="#">Hollow Knight Map</a>
-  <a href="#">GBA Games</a>
-</div>
-
 <div class="container">
-  <section class="hero">
-    <h2>Welcome!</h2>
-    <p>Choose a game below and start playing instantly.</p>
-  </section>
-
-  <!-- Games grid -->
-  <div class="games-grid">
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/', '_blank')">Minecraft</div>
-    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/', '_blank')">Time Shooter</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/1v1.lol/', '_blank')">1v1.LOL</div>
-    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/2048/', '_blank')">2048</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/GunSpin/', '_blank')">Gun Spin</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/polytrack.3/', '_blank')">Polytrack</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Stickman-Hook/', '_blank')">Stickman Hook</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cluster/', '_blank')">Cluster Rush</div>
+  <h1>Welcome <span id="username-display"></span></h1>
+  <input type="text" id="admin-code" placeholder="Enter Admin Code">
+  <div id="admin-panel" class="hidden">
+    <h2>Admin Panel</h2>
+    <div id="users-list"></div>
+    <h3>Email a user</h3>
+    <input type="text" id="email-to" placeholder="User email">
+    <input type="text" id="email-subject" placeholder="Subject">
+    <input type="text" id="email-body" placeholder="Body">
+    <button onclick="sendEmail()">Send Email</button>
   </div>
-</div>
-
-<!-- Chat Button with notification -->
-<div id="chat-toggle" onclick="toggleChat()">
-  💬 Chat
-  <div id="chat-notification"></div>
 </div>
 
 <script>
-  const sidebar = document.getElementById('sidebar');
+  // Show username
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if(!currentUser){ window.location.href='index.html'; }
+  document.getElementById('username-display').textContent = currentUser.username;
 
-  function toggleSidebar() {
-    if (sidebar.style.right === '0px') sidebar.style.right = '-250px';
-    else sidebar.style.right = '0px';
-  }
+  const adminInput = document.getElementById('admin-code');
+  const adminPanel = document.getElementById('admin-panel');
 
-  // Chat popup
-  let chatOpened = false;
-  const chatNotif = document.getElementById('chat-notification');
+  let codeCount = 0;
 
-  function toggleChat() {
-    if (!chatOpened) {
-      window.chatWindow = window.open(
-        'https://communityhelp.linewize.org/',
-        'ChatWindow',
-        'width=400,height=600'
-      );
-      chatOpened = true;
-      chatNotif.style.display = 'none';
-      if (!window.chatWindow) alert("Popup blocked! Allow popups to use chat.");
-    } else {
-      if (window.chatWindow && !window.chatWindow.closed) window.chatWindow.focus();
-      else chatOpened = false;
+  adminInput.addEventListener('input', () => {
+    if(adminInput.value === '67'){ codeCount++; adminInput.value=''; }
+    if(codeCount >= 3){
+      adminPanel.classList.remove('hidden');
+      displayUsers();
     }
+  });
+
+  function displayUsers(){
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const list = document.getElementById('users-list');
+    list.innerHTML = '<ul>' + users.map(u=>`<li>${u.username} (${u.email})</li>`).join('') + '</ul>';
   }
 
-  // Example notification
-  setTimeout(() => { chatNotif.style.display = 'block'; }, 2000);
+  function sendEmail(){
+    const email = document.getElementById('email-to').value;
+    const subject = document.getElementById('email-subject').value;
+    const body = document.getElementById('email-body').value;
+    if(email) window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+  }
 </script>
 
 </body>
