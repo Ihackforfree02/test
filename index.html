@@ -5,55 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ultimate Game Launcher</title>
 <style>
-  * { box-sizing: border-box; margin:0; padding:0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body, html {
-    height:100%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:#00ffff; overflow-x:hidden; display:flex; justify-content:center; align-items:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%; width: 100%; background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color: #00ffff; display: flex; justify-content: center; align-items: center; overflow-x: hidden;
   }
 
   .container {
-    width: 95%; max-width: 1000px; background: rgba(0,0,0,0.75);
-    border-radius: 20px; padding: 40px 30px; box-shadow:0 0 25px #00ffff, inset 0 0 40px #00ffff;
-    text-align:center; position:relative;
+    max-width: 1200px; width: 95%; background: rgba(0,0,0,0.85);
+    border-radius: 20px; padding: 50px 30px; box-shadow: 0 0 30px #00ffff, inset 0 0 40px #00ffff;
+    text-align: center;
   }
 
   h1 {
-    font-size: 3rem; margin-bottom: 20px; letter-spacing:2px;
-    text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;
+    font-size: 3rem; margin-bottom: 30px; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
   }
 
   #searchBar {
-    width:70%; max-width:400px; padding:12px 15px; margin-bottom:30px;
-    border-radius:25px; border:2px solid #00ffff; background:transparent; color:#00ffff;
-    font-size:1rem; outline:none; box-shadow:0 0 10px #00ffff;
-    transition:0.3s;
+    width: 70%; max-width: 400px; padding: 12px 20px; margin-bottom: 40px;
+    border-radius: 25px; border: 2px solid #00ffff; background: transparent; color: #00ffff;
+    font-size: 1rem; outline: none; box-shadow: 0 0 10px #00ffff; transition: all 0.3s;
   }
-  #searchBar:focus { box-shadow:0 0 20px #00ffff; }
+  #searchBar:focus { box-shadow: 0 0 25px #00ffff; }
 
   .game-grid {
-    display:grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-    gap:20px; justify-items:center;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 25px;
   }
 
   .game-card {
-    background: rgba(0,0,0,0.5); border-radius:15px;
-    padding:15px; width:160px; transition:0.3s; box-shadow:0 0 10px #00ffff;
-    text-align:center; cursor:pointer; font-weight:bold; border:2px solid #00ffff;
+    background: rgba(0,0,0,0.5); border-radius: 15px; padding: 20px;
+    transition: all 0.3s; box-shadow: 0 0 10px #00ffff; cursor: pointer;
+    font-weight: bold; color: #00ffff; border: 2px solid #00ffff;
+    display: flex; justify-content: center; align-items: center; height: 80px;
+    text-align: center; font-size: 1.1rem;
   }
   .game-card:hover {
-    background:#00ffff; color:#0f2027; box-shadow:0 0 25px #00ffff, inset 0 0 30px #00ffff;
+    background: #00ffff; color: #0f2027;
+    box-shadow: 0 0 25px #00ffff, inset 0 0 30px #00ffff;
+    transform: translateY(-5px);
   }
 
   #chat-toggle {
-    position: fixed; bottom:20px; left:20px; background:#0078D7; color:white;
-    padding:10px 15px; border-radius:20px; cursor:pointer; z-index:1000;
-    box-shadow:0 0 10px #0078D7; font-family:sans-serif; user-select:none;
+    position: fixed; bottom: 20px; left: 20px; background: #0078D7; color: #fff;
+    padding: 10px 15px; border-radius: 20px; cursor: pointer; z-index: 1000;
+    box-shadow: 0 0 10px #0078D7; font-family: sans-serif; user-select: none;
   }
 
-  /* Techno Borders */
+  /* Techno borders */
   .border-top,.border-right,.border-bottom,.border-left {
-    position: fixed; pointer-events:none; z-index:9999;
+    position: fixed; pointer-events: none; z-index: 9999;
     background: linear-gradient(90deg,transparent,#00ffff,transparent);
     animation: technoGlow 3s linear infinite;
   }
@@ -73,75 +74,86 @@
 <div class="container">
   <h1>Ultimate Game Launcher</h1>
   <input type="text" id="searchBar" placeholder="Search games..." onkeyup="filterGames()">
-  
+
   <div class="game-grid" id="gameGrid">
     <!-- Game Cards -->
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/','_blank')">Minecraft</div>
-    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/','_blank')">Time Shooter</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/1v1.lol/','_blank')">1v1.LOL</div>
-    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/2048/','_blank')">2048</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/GunSpin/','_blank')">Gun Spin</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/polytrack.3/','_blank')">Polytrack</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Stickman-Hook/','_blank')">Stickman Hook</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cluster/','_blank')">Cluster Rush</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cookie-clicker/','_blank')">Cookie Clicker</div>
-    <div class="game-card" onclick="window.open('https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/','_blank')">CSGO Clicker</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/dogeminer/','_blank')">Dogeminer</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tinyfishing/','_blank')">Tiny Fishing</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/rooftops/','_blank')">Rooftop Snipers</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/bitlife/','_blank')">Bitlife</div>
-    <div class="game-card" onclick="window.open('https://lnahtml.github.io/a6/sausage-flip','_blank')">Sausage Flip</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tanukisunset/','_blank')">Tanuki Sunset</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/drivemad/','_blank')">Drive Mad</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/basketrandom/','_blank')">Basket Random</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tunnelrush/','_blank')">Tunnel Rush</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/basketballstars/','_blank')">Basketball Stars</div>
-    <div class="game-card" onclick="window.open('https://quiz-50.github.io/driving-games/drift-boss/','_blank')">Drift Boss</div>
-    <div class="game-card" onclick="window.open('https://quiz-50.github.io/action-games/gun-mayhem-2/','_blank')">Gun Mayhem 2</div>
-    <div class="game-card" onclick="window.open('https://quiz-50.github.io/strategy-games/ballistic/','_blank')">Ballistic</div>
-    <div class="game-card" onclick="window.open('https://sigmasigmapd2mods.github.io/subwaysurfers/','_blank')">Subway Surfers</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/geodash/','_blank')">Geometry Dash</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/1/','_blank')">FNAF</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/2/','_blank')">FNAF 2</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/3/','_blank')">FNAF 3</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/4/','_blank')">FNAF 4</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/w/','_blank')">FNAF World</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/sl/','_blank')">FNAF Sister Location</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/ps/','_blank')">FNAF Pizzeria</div>
-    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/ucn/','_blank')">FNAF Custom Night</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/hd_fnaf/1/','_blank')">5 Nights at Diddys</div>
-    <div class="game-card" onclick="window.open('https://fusioncalc.com/','_blank')">Pokemon Fusion</div>
-    <div class="game-card" onclick="window.open('https://www.transum.org/Maths/Activity/Probability/Gambling.asp','_blank')">Gambling</div>
-    <div class="game-card" onclick="window.open('https://stake.whatthesigma.site/','_blank')">Gambling Better</div>
-    <div class="game-card" onclick="window.open('https://sleepie.uk/undertale/save_states.html','_blank')">Undertale</div>
-    <div class="game-card" onclick="window.open('https://quiz-50.github.io/action-games/10-minutes-till-dawn/','_blank')">10 Mins Till Dawn</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/UltraKill/','_blank')">UltraKill</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/deltarune/','_blank')">Deltarune</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/buckshot-roulette/','_blank')">Buckshot Roulette</div>
-    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/People-Playground/','_blank')">People Playground</div>
-    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/TriggerRally/server/public/','_blank')">Track Racing</div>
   </div>
 </div>
 
 <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
 
 <script>
-  function toggleChat(){
+  const games = [
+    {name:'Minecraft', link:'https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/'},
+    {name:'Time Shooter', link:'https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/'},
+    {name:'1v1.LOL', link:'https://ihackforfree02.github.io/1v1.lol/'},
+    {name:'2048', link:'https://schoolaccountforme.github.io/2048/'},
+    {name:'Gun Spin', link:'https://ihackforfree02.github.io/GunSpin/'},
+    {name:'Polytrack', link:'https://ihackforfree02.github.io/polytrack.3/'},
+    {name:'Stickman Hook', link:'https://ihackforfree02.github.io/Stickman-Hook/'},
+    {name:'Cluster Rush', link:'https://ihackforfree02.github.io/cluster/'},
+    {name:'Cookie Clicker', link:'https://ihackforfree02.github.io/cookie-clicker/'},
+    {name:'CSGO Clicker', link:'https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/'},
+    {name:'Dogeminer', link:'https://amazingwebsitesupersigma.github.io/dogeminer/'},
+    {name:'Tiny Fishing', link:'https://amazingwebsitesupersigma.github.io/tinyfishing/'},
+    {name:'Rooftop Snipers', link:'https://amazingwebsitesupersigma.github.io/rooftops/'},
+    {name:'Bitlife', link:'https://amazingwebsitesupersigma.github.io/bitlife/'},
+    {name:'Sausage Flip', link:'https://lnahtml.github.io/a6/sausage-flip'},
+    {name:'Tanuki Sunset', link:'https://amazingwebsitesupersigma.github.io/tanukisunset/'},
+    {name:'Drive Mad', link:'https://amazingwebsitesupersigma.github.io/drivemad/'},
+    {name:'Basket Random', link:'https://amazingwebsitesupersigma.github.io/basketrandom/'},
+    {name:'Tunnel Rush', link:'https://amazingwebsitesupersigma.github.io/tunnelrush/'},
+    {name:'Basketball Stars', link:'https://amazingwebsitesupersigma.github.io/basketballstars/'},
+    {name:'Drift Boss', link:'https://quiz-50.github.io/driving-games/drift-boss/'},
+    {name:'Gun Mayhem 2', link:'https://quiz-50.github.io/action-games/gun-mayhem-2/'},
+    {name:'Ballistic', link:'https://quiz-50.github.io/strategy-games/ballistic/'},
+    {name:'Subway Surfers', link:'https://sigmasigmapd2mods.github.io/subwaysurfers/'},
+    {name:'Geometry Dash', link:'https://amazingwebsitesupersigma.github.io/geodash/'},
+    {name:'FNAF', link:'https://irv77.github.io/hd_fnaf/1/'},
+    {name:'FNAF 2', link:'https://irv77.github.io/hd_fnaf/2/'},
+    {name:'FNAF 3', link:'https://irv77.github.io/hd_fnaf/3/'},
+    {name:'FNAF 4', link:'https://irv77.github.io/hd_fnaf/4/'},
+    {name:'FNAF World', link:'https://irv77.github.io/hd_fnaf/w/'},
+    {name:'FNAF Sister Location', link:'https://irv77.github.io/hd_fnaf/sl/'},
+    {name:'FNAF Pizzeria', link:'https://irv77.github.io/hd_fnaf/ps/'},
+    {name:'FNAF Custom Night', link:'https://irv77.github.io/hd_fnaf/ucn/'},
+    {name:'5 Nights at Diddys', link:'https://amazingwebsitesupersigma.github.io/hd_fnaf/1/'},
+    {name:'Pokemon Fusion', link:'https://fusioncalc.com/'},
+    {name:'Gambling', link:'https://www.transum.org/Maths/Activity/Probability/Gambling.asp'},
+    {name:'Gambling Better', link:'https://stake.whatthesigma.site/'},
+    {name:'Undertale', link:'https://sleepie.uk/undertale/save_states.html'},
+    {name:'10 Mins Till Dawn', link:'https://quiz-50.github.io/action-games/10-minutes-till-dawn/'},
+    {name:'UltraKill', link:'https://amazingwebsitesupersigma.github.io/UltraKill/'},
+    {name:'Deltarune', link:'https://amazingwebsitesupersigma.github.io/deltarune/'},
+    {name:'Buckshot Roulette', link:'https://amazingwebsitesupersigma.github.io/buckshot-roulette/'},
+    {name:'People Playground', link:'https://amazingwebsitesupersigma.github.io/People-Playground/'},
+    {name:'Track Racing', link:'https://ihackforfree02.github.io/TriggerRally/server/public/'}
+  ];
+
+  const grid = document.getElementById('gameGrid');
+  games.forEach(g => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.textContent = g.name;
+    card.onclick = () => window.open(g.link,'_blank');
+    grid.appendChild(card);
+  });
+
+  function filterGames() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.style.display = card.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
+    });
+  }
+
+  function toggleChat() {
     if(window.chatWindow && !window.chatWindow.closed) window.chatWindow.focus();
     else window.chatWindow = window.open('https://communityhelp.linewize.org/','ChatWindow','width=400,height=600');
   }
 
-  // Controller rain
-  const createController=()=>{const c=document.createElement('div');c.classList.add('controller');c.textContent='🎮';c.style.left=`${Math.random()*100}vw`;c.style.animationDuration=`${3+Math.random()*2}s`;c.style.fontSize=`${1.5+Math.random()*2}rem`;document.body.appendChild(c);setTimeout(()=>c.remove(),6000);}
+  // Controller rain animation
+  const createController=()=>{const c=document.createElement('div');c.className='controller';c.textContent='🎮';c.style.left=`${Math.random()*100}vw`;c.style.animationDuration=`${3+Math.random()*2}s`;c.style.fontSize=`${1.5+Math.random()*2}rem`;document.body.appendChild(c);setTimeout(()=>c.remove(),6000);}
   setInterval(createController,250);
-
-  // Search filter
-  function filterGames(){
-    const input=document.getElementById('searchBar').value.toLowerCase();
-    document.querySelectorAll('.game-card').forEach(g=>{
-      g.style.display=g.textContent.toLowerCase().includes(input)?'inline-block':'none';
-    });
-  }
 </script>
 
 <!-- Techno borders -->
