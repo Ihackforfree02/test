@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | MR Games</title>
+<style>
+  /* === Global Styles === */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body, html { height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg,#0f2027,#203a43,#2c5364); display:flex; justify-content:center; align-items:center; color:#00ffff; }
+  a { color:#00ffff; text-decoration:none; }
+
+  /* === Container === */
+  .container { background: rgba(0,0,0,0.7); padding: 40px; border-radius: 12px; width: 350px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+  h1 { text-align:center; color:#f0db4f; text-shadow:0 0 10px #f0db4f,0 0 20px #f0db4f; margin-bottom: 20px; }
+
+  /* === Form Elements === */
+  input { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:2px solid #00ffff; background:#000; color:#00ffff; font-size:1rem; }
+  button { width:100%; padding:12px; margin-top:10px; border:none; border-radius:8px; background:#00ffff; color:#0f2027; font-weight:bold; cursor:pointer; font-size:1rem; box-shadow:0 0 12px #00ffff; }
+  button:hover { box-shadow:0 0 20px #00ffff; }
+
+  .toggle { margin-top:12px; text-align:center; cursor:pointer; color:#00ffff; font-size:0.95rem; }
+  .toggle:hover { text-decoration:underline; }
+
+  .message { text-align:center; margin-top:8px; font-size:0.9rem; color:#ff6666; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>MR Games</h1>
+  <div id="login-form">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button id="loginBtn">Login</button>
+    <div class="toggle" id="toggleForm">Don't have an account? Sign Up</div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <div id="signup-form" style="display:none;">
+    <input type="email" id="signEmail" placeholder="Email" required>
+    <input type="text" id="signUsername" placeholder="Username" required>
+    <input type="password" id="signPassword" placeholder="Password" required>
+    <button id="signupBtn">Sign Up</button>
+    <div class="toggle" id="toggleForm2">Already have an account? Login</div>
+    <div class="message" id="signupMessage"></div>
+  </div>
+</div>
+
+<script>
+  // Elements
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const toggleForm = document.getElementById('toggleForm');
+  const toggleForm2 = document.getElementById('toggleForm2');
+  const message = document.getElementById('message');
+  const signupMessage = document.getElementById('signupMessage');
+
+  // Toggle between login and signup
+  toggleForm.addEventListener('click', ()=> { loginForm.style.display='none'; signupForm.style.display='block'; message.textContent=''; signupMessage.textContent=''; });
+  toggleForm2.addEventListener('click', ()=> { loginForm.style.display='block'; signupForm.style.display='none'; message.textContent=''; signupMessage.textContent=''; });
+
+  // Auto-login if user exists
+  window.addEventListener('load', ()=>{
+    const savedUser = JSON.parse(localStorage.getItem('mrGamesUser'));
+    if(savedUser) {
+      alert('Auto-logged in as '+savedUser.username);
+      window.location.href = 'index.html'; // Redirect to main page
+    }
+  });
+
+  // Login
+  document.getElementById('loginBtn').addEventListener('click', ()=>{
+    const email = document.getElementById('email').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    const savedUser = JSON.parse(localStorage.getItem('mrGamesUser'));
+    if(!savedUser) { message.textContent='No account found. Please sign up.'; return; }
+    if(email===savedUser.email && username===savedUser.username && password===savedUser.password){
+      localStorage.setItem('mrGamesUser', JSON.stringify(savedUser)); // save login
+      alert('Login successful! Redirecting...');
+      window.location.href = 'index.html';
+    } else { message.textContent='Invalid credentials.'; }
+  });
+
+  // Sign Up
+  document.getElementById('signupBtn').addEventListener('click', ()=>{
+    const email = document.getElementById('signEmail').value.trim();
+    const username = document.getElementById('signUsername').value.trim();
+    const password = document.getElementById('signPassword').value.trim();
+
+    if(!email || !username || !password){ signupMessage.textContent='Please fill all fields.'; return; }
+
+    const newUser = { email, username, password };
+    localStorage.setItem('mrGamesUser', JSON.stringify(newUser));
+    alert('Sign-up successful! Redirecting to main page...');
+    window.location.href = 'index.html';
+  });
+</script>
+
+</body>
+</html>
