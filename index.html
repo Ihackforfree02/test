@@ -3,62 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Main - Game Launcher</title>
+<title>Login - Game Launcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  body, html{height:100%;margin:0;font-family:sans-serif;background:#0f2027;color:#00ffff;}
-  .container{max-width:1200px;margin:50px auto;padding:20px;}
-  .hidden{display:none;}
-  button{padding:10px 15px;border:none;border-radius:5px;background:#00ffff;color:#001833;font-weight:bold;cursor:pointer;}
-  #admin-panel{background:rgba(0,0,0,0.8);padding:20px;border-radius:10px;margin-top:20px;}
-  input{padding:6px;margin:5px;border-radius:5px;border:1px solid #00ffff;background:#001833;color:#00ffff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body, html {height:100%;font-family:'Inter',sans-serif;background:#0f2027;color:#fff;display:flex;justify-content:center;align-items:center;}
+  .login-container {background: rgba(0,0,0,0.7); padding:40px; border-radius:15px; width: 350px; text-align:center; box-shadow:0 0 20px #00ffff;}
+  h1 {color:#00ffff; margin-bottom:20px;}
+  input {width:100%; padding:12px; margin:10px 0; border-radius:8px; border:2px solid #00ffff; background:#001833; color:#00ffff; font-size:1rem;}
+  button {width:100%; padding:12px; margin-top:15px; border:none; border-radius:8px; background:#00ffff; color:#001833; font-weight:bold; cursor:pointer; transition:0.3s;}
+  button:hover {background:#00aabb;}
+  .link {margin-top:12px; font-size:0.9rem; color:#00ffff; cursor:pointer;}
+  .error {color:red; font-size:0.85rem; margin-top:10px;}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Welcome <span id="username-display"></span></h1>
-  <input type="text" id="admin-code" placeholder="Enter Admin Code">
-  <div id="admin-panel" class="hidden">
-    <h2>Admin Panel</h2>
-    <div id="users-list"></div>
-    <h3>Email a user</h3>
-    <input type="text" id="email-to" placeholder="User email">
-    <input type="text" id="email-subject" placeholder="Subject">
-    <input type="text" id="email-body" placeholder="Body">
-    <button onclick="sendEmail()">Send Email</button>
-  </div>
+<div class="login-container">
+  <h1>Login</h1>
+  <input type="text" id="login-username" placeholder="Username" />
+  <input type="password" id="login-password" placeholder="Password" />
+  <div class="error" id="login-error"></div>
+  <button onclick="login()">Login</button>
+  <div class="link" onclick="goSignUp()">Don't have an account? Sign Up</div>
 </div>
 
 <script>
-  // Show username
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  if(!currentUser){ window.location.href='index.html'; }
-  document.getElementById('username-display').textContent = currentUser.username;
+  function goSignUp(){ window.location.href='sign_up.html'; }
 
-  const adminInput = document.getElementById('admin-code');
-  const adminPanel = document.getElementById('admin-panel');
-
-  let codeCount = 0;
-
-  adminInput.addEventListener('input', () => {
-    if(adminInput.value === '67'){ codeCount++; adminInput.value=''; }
-    if(codeCount >= 3){
-      adminPanel.classList.remove('hidden');
-      displayUsers();
-    }
-  });
-
-  function displayUsers(){
+  function login(){
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value.trim();
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const list = document.getElementById('users-list');
-    list.innerHTML = '<ul>' + users.map(u=>`<li>${u.username} (${u.email})</li>`).join('') + '</ul>';
-  }
-
-  function sendEmail(){
-    const email = document.getElementById('email-to').value;
-    const subject = document.getElementById('email-subject').value;
-    const body = document.getElementById('email-body').value;
-    if(email) window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    const user = users.find(u => u.username === username && u.password === password);
+    if(user){
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      window.location.href='main.html';
+    } else{
+      document.getElementById('login-error').textContent='Invalid username or password.';
+    }
   }
 </script>
 
