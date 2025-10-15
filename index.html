@@ -3,48 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Launcher</title>
+<title>Ultimate Game Launcher</title>
 <style>
   * { box-sizing: border-box; margin:0; padding:0; }
   body, html {
-    height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f2027; color: #00ffff; overflow-x:hidden; position:relative;
+    height:100%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:#00ffff; overflow-x:hidden; display:flex; justify-content:center; align-items:center;
   }
 
   .container {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 40px 30px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 16px;
-    box-shadow: 0 0 20px #00ffff, inset 0 0 30px #00ffff;
-    text-align: center;
-    position: relative;
-    z-index:10;
+    width: 95%; max-width: 1000px; background: rgba(0,0,0,0.75);
+    border-radius: 20px; padding: 40px 30px; box-shadow:0 0 25px #00ffff, inset 0 0 40px #00ffff;
+    text-align:center; position:relative;
   }
 
-  h1 { font-size: 3rem; margin-bottom: 20px; text-shadow:0 0 8px #00ffff,0 0 20px #00ffff; letter-spacing:3px; }
+  h1 {
+    font-size: 3rem; margin-bottom: 20px; letter-spacing:2px;
+    text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;
+  }
 
   #searchBar {
-    width: 60%; padding: 10px 15px; margin-bottom: 30px;
-    border-radius: 20px; border:2px solid #00ffff; background:transparent;
-    color:#00ffff; font-size:1rem; outline:none; box-shadow:0 0 8px #00ffff;
+    width:70%; max-width:400px; padding:12px 15px; margin-bottom:30px;
+    border-radius:25px; border:2px solid #00ffff; background:transparent; color:#00ffff;
+    font-size:1rem; outline:none; box-shadow:0 0 10px #00ffff;
+    transition:0.3s;
+  }
+  #searchBar:focus { box-shadow:0 0 20px #00ffff; }
+
+  .game-grid {
+    display:grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap:20px; justify-items:center;
   }
 
-  .button-grid {
-    display: grid; grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-    gap: 15px; justify-items:center;
+  .game-card {
+    background: rgba(0,0,0,0.5); border-radius:15px;
+    padding:15px; width:160px; transition:0.3s; box-shadow:0 0 10px #00ffff;
+    text-align:center; cursor:pointer; font-weight:bold; border:2px solid #00ffff;
+  }
+  .game-card:hover {
+    background:#00ffff; color:#0f2027; box-shadow:0 0 25px #00ffff, inset 0 0 30px #00ffff;
   }
 
-  .button-grid a {
-    text-decoration:none; font-size:1rem; padding:12px 20px; border-radius:20px;
-    color:#00ffff; border:2px solid #00ffff; box-shadow:0 0 8px #00ffff;
-    background:transparent; transition:0.3s; display:inline-block; width:150px;
-    text-align:center; font-weight:600;
+  #chat-toggle {
+    position: fixed; bottom:20px; left:20px; background:#0078D7; color:white;
+    padding:10px 15px; border-radius:20px; cursor:pointer; z-index:1000;
+    box-shadow:0 0 10px #0078D7; font-family:sans-serif; user-select:none;
   }
-  .button-grid a:hover { background:#00ffff; color:#0f2027; box-shadow:0 0 20px #00ffff,inset 0 0 30px #00ffff; cursor:pointer; }
 
-  /* Techno borders */
+  /* Techno Borders */
   .border-top,.border-right,.border-bottom,.border-left {
     position: fixed; pointer-events:none; z-index:9999;
     background: linear-gradient(90deg,transparent,#00ffff,transparent);
@@ -58,105 +65,81 @@
 
   /* Controller rain */
   .controller { position:fixed; top:-50px; font-size:2rem; animation:fall linear; color:#00ffff; pointer-events:none; z-index:1;}
-  @keyframes fall { to { transform:translateY(110vh); opacity:0;}}
-
-  /* Chat button */
-  #chat-toggle { position:fixed; bottom:20px; left:20px; background-color:#0078D7; color:white;
-    padding:10px 15px; border-radius:20px; cursor:pointer; z-index:1000; font-family:sans-serif;
-    box-shadow:0 0 10px #0078D7; user-select:none;
-  }
+  @keyframes fall { to { transform:translateY(110vh); opacity:0; } }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Games</h1>
+  <h1>Ultimate Game Launcher</h1>
   <input type="text" id="searchBar" placeholder="Search games..." onkeyup="filterGames()">
-
-  <div class="button-grid" id="gameGrid">
-    <!-- Games -->
-    <a href="https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/" target="_blank">Minecraft</a>
-    <a href="https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/" target="_blank">Time Shooter</a>
-    <a href="https://ihackforfree02.github.io/1v1.lol/" target="_blank">1v1.LOL</a>
-    <a href="https://schoolaccountforme.github.io/2048/" target="_blank">2048</a>
-    <a href="https://ihackforfree02.github.io/GunSpin/" target="_blank">Gun Spin</a>
-    <a href="https://ihackforfree02.github.io/polytrack.3/" target="_blank">Polytrack</a>
-    <a href="https://ihackforfree02.github.io/Stickman-Hook/" target="_blank">Stickman Hook</a>
-    <a href="https://ihackforfree02.github.io/cluster/" target="_blank">Cluster Rush</a>
-    <a href="https://ihackforfree02.github.io/cookie-clicker/" target="_blank">Cookie Clicker</a>
-    <a href="https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/" target="_blank">CSGO Clicker</a>
-    <a href="https://amazingwebsitesupersigma.github.io/dogeminer/" target="_blank">Dogeminer</a>
-    <a href="https://amazingwebsitesupersigma.github.io/tinyfishing/" target="_blank">Tiny Fishing</a>
-    <a href="https://amazingwebsitesupersigma.github.io/rooftops/" target="_blank">Rooftop Snipers</a>
-    <a href="https://amazingwebsitesupersigma.github.io/bitlife/" target="_blank">Bitlife</a>
-    <a href="https://lnahtml.github.io/a6/sausage-flip" target="_blank">Sausage Flip</a>
-    <a href="https://amazingwebsitesupersigma.github.io/tanukisunset/" target="_blank">Tanuki Sunset</a>
-    <a href="https://amazingwebsitesupersigma.github.io/drivemad/" target="_blank">Drive Mad</a>
-    <a href="https://amazingwebsitesupersigma.github.io/basketrandom/" target="_blank">Basket Random</a>
-    <a href="https://amazingwebsitesupersigma.github.io/tunnelrush/" target="_blank">Tunnel Rush</a>
-    <a href="https://amazingwebsitesupersigma.github.io/basketballstars/" target="_blank">Basketball Stars</a>
-    <a href="https://quiz-50.github.io/driving-games/drift-boss/" target="_blank">Drift Boss</a>
-    <a href="https://quiz-50.github.io/action-games/gun-mayhem-2/" target="_blank">Gun Mayhem 2</a>
-    <a href="https://quiz-50.github.io/strategy-games/ballistic/" target="_blank">Ballistic</a>
-    <a href="https://sigmasigmapd2mods.github.io/subwaysurfers/" target="_blank">Subway Surfers</a>
-    <a href="https://amazingwebsitesupersigma.github.io/geodash/" target="_blank">Geometry Dash</a>
-    <a href="https://irv77.github.io/hd_fnaf/1/" target="_blank">FNAF</a>
-    <a href="https://irv77.github.io/hd_fnaf/2/" target="_blank">FNAF 2</a>
-    <a href="https://irv77.github.io/hd_fnaf/3/" target="_blank">FNAF 3</a>
-    <a href="https://irv77.github.io/hd_fnaf/4/" target="_blank">FNAF 4</a>
-    <a href="https://irv77.github.io/hd_fnaf/w/" target="_blank">FNAF World</a>
-    <a href="https://irv77.github.io/hd_fnaf/sl/" target="_blank">FNAF Sister Location</a>
-    <a href="https://irv77.github.io/hd_fnaf/ps/" target="_blank">FNAF Pizzeria</a>
-    <a href="https://irv77.github.io/hd_fnaf/ucn/" target="_blank">FNAF Custom Night</a>
-    <a href="https://amazingwebsitesupersigma.github.io/hd_fnaf/1/" target="_blank">5 Nights at Diddys</a>
-    <a href="https://fusioncalc.com/" target="_blank">Pokemon Fusion</a>
-    <a href="https://www.transum.org/Maths/Activity/Probability/Gambling.asp" target="_blank">Gambling</a>
-    <a href="https://stake.whatthesigma.site/" target="_blank">Gambling Better</a>
-    <a href="https://sleepie.uk/undertale/save_states.html" target="_blank">Undertale</a>
-    <a href="https://quiz-50.github.io/action-games/10-minutes-till-dawn/" target="_blank">10 Mins Till Dawn</a>
-    <a href="https://amazingwebsitesupersigma.github.io/UltraKill/" target="_blank">UltraKill</a>
-    <a href="https://amazingwebsitesupersigma.github.io/deltarune/" target="_blank">Deltarune</a>
-    <a href="https://amazingwebsitesupersigma.github.io/buckshot-roulette/" target="_blank">Buckshot Roulette</a>
-    <a href="https://amazingwebsitesupersigma.github.io/People-Playground/" target="_blank">People Playground</a>
-    <a href="https://ihackforfree02.github.io/TriggerRally/server/public/" target="_blank">Track Racing</a>
+  
+  <div class="game-grid" id="gameGrid">
+    <!-- Game Cards -->
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/','_blank')">Minecraft</div>
+    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/','_blank')">Time Shooter</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/1v1.lol/','_blank')">1v1.LOL</div>
+    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/2048/','_blank')">2048</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/GunSpin/','_blank')">Gun Spin</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/polytrack.3/','_blank')">Polytrack</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Stickman-Hook/','_blank')">Stickman Hook</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cluster/','_blank')">Cluster Rush</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cookie-clicker/','_blank')">Cookie Clicker</div>
+    <div class="game-card" onclick="window.open('https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/','_blank')">CSGO Clicker</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/dogeminer/','_blank')">Dogeminer</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tinyfishing/','_blank')">Tiny Fishing</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/rooftops/','_blank')">Rooftop Snipers</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/bitlife/','_blank')">Bitlife</div>
+    <div class="game-card" onclick="window.open('https://lnahtml.github.io/a6/sausage-flip','_blank')">Sausage Flip</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tanukisunset/','_blank')">Tanuki Sunset</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/drivemad/','_blank')">Drive Mad</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/basketrandom/','_blank')">Basket Random</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/tunnelrush/','_blank')">Tunnel Rush</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/basketballstars/','_blank')">Basketball Stars</div>
+    <div class="game-card" onclick="window.open('https://quiz-50.github.io/driving-games/drift-boss/','_blank')">Drift Boss</div>
+    <div class="game-card" onclick="window.open('https://quiz-50.github.io/action-games/gun-mayhem-2/','_blank')">Gun Mayhem 2</div>
+    <div class="game-card" onclick="window.open('https://quiz-50.github.io/strategy-games/ballistic/','_blank')">Ballistic</div>
+    <div class="game-card" onclick="window.open('https://sigmasigmapd2mods.github.io/subwaysurfers/','_blank')">Subway Surfers</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/geodash/','_blank')">Geometry Dash</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/1/','_blank')">FNAF</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/2/','_blank')">FNAF 2</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/3/','_blank')">FNAF 3</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/4/','_blank')">FNAF 4</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/w/','_blank')">FNAF World</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/sl/','_blank')">FNAF Sister Location</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/ps/','_blank')">FNAF Pizzeria</div>
+    <div class="game-card" onclick="window.open('https://irv77.github.io/hd_fnaf/ucn/','_blank')">FNAF Custom Night</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/hd_fnaf/1/','_blank')">5 Nights at Diddys</div>
+    <div class="game-card" onclick="window.open('https://fusioncalc.com/','_blank')">Pokemon Fusion</div>
+    <div class="game-card" onclick="window.open('https://www.transum.org/Maths/Activity/Probability/Gambling.asp','_blank')">Gambling</div>
+    <div class="game-card" onclick="window.open('https://stake.whatthesigma.site/','_blank')">Gambling Better</div>
+    <div class="game-card" onclick="window.open('https://sleepie.uk/undertale/save_states.html','_blank')">Undertale</div>
+    <div class="game-card" onclick="window.open('https://quiz-50.github.io/action-games/10-minutes-till-dawn/','_blank')">10 Mins Till Dawn</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/UltraKill/','_blank')">UltraKill</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/deltarune/','_blank')">Deltarune</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/buckshot-roulette/','_blank')">Buckshot Roulette</div>
+    <div class="game-card" onclick="window.open('https://amazingwebsitesupersigma.github.io/People-Playground/','_blank')">People Playground</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/TriggerRally/server/public/','_blank')">Track Racing</div>
   </div>
 </div>
 
-<!-- Chat button -->
 <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
 
 <script>
-  function toggleChat() {
-    if(window.chatWindow && !window.chatWindow.closed){
-      window.chatWindow.focus();
-    } else {
-      window.chatWindow = window.open(
-        'https://communityhelp.linewize.org/',
-        'ChatWindow',
-        'width=400,height=600'
-      );
-      if(!window.chatWindow) alert("Popup blocked! Allow popups.");
-    }
+  function toggleChat(){
+    if(window.chatWindow && !window.chatWindow.closed) window.chatWindow.focus();
+    else window.chatWindow = window.open('https://communityhelp.linewize.org/','ChatWindow','width=400,height=600');
   }
 
   // Controller rain
-  const createController = () => {
-    const c = document.createElement('div');
-    c.classList.add('controller'); c.textContent = '🎮';
-    c.style.left = `${Math.random()*100}vw`;
-    c.style.animationDuration = `${3+Math.random()*2}s`;
-    c.style.fontSize = `${1.5+Math.random()*2}rem`;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),6000);
-  }
+  const createController=()=>{const c=document.createElement('div');c.classList.add('controller');c.textContent='🎮';c.style.left=`${Math.random()*100}vw`;c.style.animationDuration=`${3+Math.random()*2}s`;c.style.fontSize=`${1.5+Math.random()*2}rem`;document.body.appendChild(c);setTimeout(()=>c.remove(),6000);}
   setInterval(createController,250);
 
   // Search filter
   function filterGames(){
-    const input = document.getElementById('searchBar').value.toLowerCase();
-    const games = document.querySelectorAll('#gameGrid a');
-    games.forEach(g=>{
-      g.style.display = g.textContent.toLowerCase().includes(input)?'inline-block':'none';
+    const input=document.getElementById('searchBar').value.toLowerCase();
+    document.querySelectorAll('.game-card').forEach(g=>{
+      g.style.display=g.textContent.toLowerCase().includes(input)?'inline-block':'none';
     });
   }
 </script>
