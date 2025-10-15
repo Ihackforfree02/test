@@ -1,60 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | MR Games</title>
-<style>
-  body, html { height:100%; margin:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); display:flex; justify-content:center; align-items:center; color:#00ffff; }
-  .container { background: rgba(0,0,0,0.7); padding:40px; border-radius:12px; width:350px; box-shadow:0 6px 20px rgba(0,0,0,0.5); }
-  h1 { text-align:center; color:#f0db4f; text-shadow:0 0 10px #f0db4f,0 0 20px #f0db4f; margin-bottom:20px; }
-  input { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:2px solid #00ffff; background:#000; color:#00ffff; font-size:1rem; }
-  button { width:100%; padding:12px; margin-top:10px; border:none; border-radius:8px; background:#00ffff; color:#0f2027; font-weight:bold; cursor:pointer; font-size:1rem; box-shadow:0 0 12px #00ffff; }
-  button:hover { box-shadow:0 0 20px #00ffff; }
-  .message { text-align:center; margin-top:8px; font-size:0.9rem; color:#ff6666; }
-  .signup-link { text-align:center; margin-top:12px; cursor:pointer; color:#00ffff; }
-  .signup-link:hover { text-decoration:underline; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MR GAMES</title>
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    /* Base styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #00ffff;
+      overflow-x: hidden;
+    }
+
+    /* Header/logo */
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      position: relative;
+    }
+    header img {
+      width: 250px;
+      max-width: 80%;
+    }
+
+    /* Hamburger menu */
+    .menu-btn {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+    }
+    .menu-btn span {
+      display: block;
+      height: 4px;
+      background: #00ffff;
+      border-radius: 2px;
+    }
+    nav.side-menu {
+      position: fixed;
+      top: 0;
+      left: -220px;
+      width: 220px;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      flex-direction: column;
+      padding: 60px 20px;
+      gap: 20px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+    nav.side-menu a {
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #00ffff;
+      padding-bottom: 5px;
+    }
+    nav.side-menu.show {
+      left: 0;
+    }
+
+    /* Chat button */
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #0078D7;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 1000;
+      font-family: sans-serif;
+      box-shadow: 0 0 10px #0078D7;
+      user-select: none;
+    }
+
+    /* Games grid */
+    .games-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+    .game-card {
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #00ffff;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .game-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff;
+    }
+    .game-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .game-card a {
+      display: block;
+      padding: 12px;
+      color: #00ffff;
+      font-weight: bold;
+      text-decoration: none;
+      background: rgba(0,0,0,0.4);
+    }
+  </style>
 </head>
 <body>
+  <!-- Hamburger Menu -->
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="side-menu" id="sideMenu">
+    <a href="beta.html">BETA Links</a>
+    <a href="hollow_knight.html">Hollow Knight Map</a>
+    <a href="gba.html">GBA Games</a>
+  </nav>
 
-<div class="container">
-  <h1>MR Games</h1>
-  <input type="email" id="email" placeholder="Email" required>
-  <input type="text" id="username" placeholder="Username" required>
-  <input type="password" id="password" placeholder="Password" required>
-  <button id="loginBtn">Login</button>
-  <div class="message" id="message"></div>
-  <div class="signup-link" id="goSignUp">Don't have an account? Sign Up</div>
-</div>
+  <!-- Header/Logo -->
+  <header>
+    <img src="https://i.imgur.com/QxI7XUS.png" alt="MR GAMES Logo" />
+    <h1>MR GAMES</h1>
+  </header>
 
-<script>
-  const loginBtn = document.getElementById('loginBtn');
-  const message = document.getElementById('message');
-  const goSignUp = document.getElementById('goSignUp');
+  <!-- Games Section -->
+  <div class="games-container">
+    <div class="game-card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft" />
+      <a href="https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/" target="_blank">Play Minecraft</a>
+    </div>
+    <div class="game-card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/2048_game.png" alt="2048" />
+      <a href="https://schoolaccountforme.github.io/2048/" target="_blank">Play 2048</a>
+    </div>
+    <div class="game-card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Geometry_Dash_cover.png" alt="Geometry Dash" />
+      <a href="https://amazingwebsitesupersigma.github.io/geodash/" target="_blank">Play Geometry Dash</a>
+    </div>
+  </div>
 
-  goSignUp.addEventListener('click', () => { window.location.href = 'sign_up.html'; });
+  <!-- Chat Button -->
+  <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
 
-  window.addEventListener('load', () => {
-    const savedUser = JSON.parse(localStorage.getItem('mrGamesCurrentUser'));
-    if(savedUser){ window.location.href='index.html'; }
-  });
+  <script>
+    // Hamburger toggle
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      menu.classList.toggle('show');
+    }
 
-  loginBtn.addEventListener('click', () => {
-    const email = document.getElementById('email').value.trim();
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    const users = JSON.parse(localStorage.getItem('mrGamesUsers')) || [];
-    const foundUser = users.find(u => u.email===email && u.username===username);
-
-    if(!foundUser){ message.textContent = 'Account not found. Please sign up.'; return; }
-    if(foundUser.password !== password){ message.textContent = 'Incorrect password.'; return; }
-
-    localStorage.setItem('mrGamesCurrentUser', JSON.stringify(foundUser));
-    alert('Login successful! Redirecting...');
-    window.location.href = 'index.html';
-  });
-</script>
+    // Chat toggle
+    function toggleChat() {
+      if (window.chatWindow && !window.chatWindow.closed) {
+        window.chatWindow.focus();
+      } else {
+        window.chatWindow = window.open(
+          'https://communityhelp.linewize.org/',
+          'ChatWindow',
+          'width=400,height=600'
+        );
+        if (!window.chatWindow) {
+          alert("Popup blocked! Please allow popups to use chat.");
+        }
+      }
+    }
+  </script>
 </body>
 </html>
