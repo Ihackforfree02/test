@@ -3,169 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Game Launcher</title>
+<title>Refined Website Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Base Reset */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100%; width: 100%; background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color: #00ffff; display: flex; justify-content: center; align-items: center; overflow-x: hidden;
+  html, body { height: 100%; font-family: 'Inter', sans-serif; background: #f5f7fa; color: #333; }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .container {
-    max-width: 1200px; width: 95%; background: rgba(0,0,0,0.85);
-    border-radius: 20px; padding: 50px 30px; box-shadow: 0 0 30px #00ffff, inset 0 0 40px #00ffff;
+  /* Header */
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0a0a0a;
+  }
+
+  nav a {
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    color: #555;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #007BFF; }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Card Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-
-  h1 {
-    font-size: 3rem; margin-bottom: 30px; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-  }
-
-  #searchBar {
-    width: 70%; max-width: 400px; padding: 12px 20px; margin-bottom: 40px;
-    border-radius: 25px; border: 2px solid #00ffff; background: transparent; color: #00ffff;
-    font-size: 1rem; outline: none; box-shadow: 0 0 10px #00ffff; transition: all 0.3s;
-  }
-  #searchBar:focus { box-shadow: 0 0 25px #00ffff; }
-
-  .game-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 25px;
-  }
-
-  .game-card {
-    background: rgba(0,0,0,0.5); border-radius: 15px; padding: 20px;
-    transition: all 0.3s; box-shadow: 0 0 10px #00ffff; cursor: pointer;
-    font-weight: bold; color: #00ffff; border: 2px solid #00ffff;
-    display: flex; justify-content: center; align-items: center; height: 80px;
-    text-align: center; font-size: 1.1rem;
-  }
-  .game-card:hover {
-    background: #00ffff; color: #0f2027;
-    box-shadow: 0 0 25px #00ffff, inset 0 0 30px #00ffff;
+  .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+  .card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  .card a {
+    margin-top: 15px;
+    text-decoration: none;
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .card a:hover { background: #0056b3; }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
   }
 
-  #chat-toggle {
-    position: fixed; bottom: 20px; left: 20px; background: #0078D7; color: #fff;
-    padding: 10px 15px; border-radius: 20px; cursor: pointer; z-index: 1000;
-    box-shadow: 0 0 10px #0078D7; font-family: sans-serif; user-select: none;
+  /* Responsive Adjustments */
+  @media(max-width: 600px) {
+    header { flex-direction: column; gap: 20px; }
+    nav a { margin-left: 0; }
   }
 
-  /* Techno borders */
-  .border-top,.border-right,.border-bottom,.border-left {
-    position: fixed; pointer-events: none; z-index: 9999;
-    background: linear-gradient(90deg,transparent,#00ffff,transparent);
-    animation: technoGlow 3s linear infinite;
-  }
-  .border-top{top:0; left:0; width:100vw;height:4px;animation-delay:0s;}
-  .border-right{top:0; right:0; width:4px;height:100vh;animation-delay:0.75s;background:linear-gradient(180deg,transparent,#00ffff,transparent);}
-  .border-bottom{bottom:0; left:0; width:100vw;height:4px;animation-delay:1.5s;}
-  .border-left{top:0; left:0; width:4px;height:100vh;animation-delay:2.25s;background:linear-gradient(0deg,transparent,#00ffff,transparent);}
-  @keyframes technoGlow{0%{background-position:0% 50%;opacity:0.4;}50%{background-position:100% 50%;opacity:1;}100%{background-position:0% 50%;opacity:0.4;}}
-
-  /* Controller rain */
-  .controller { position:fixed; top:-50px; font-size:2rem; animation:fall linear; color:#00ffff; pointer-events:none; z-index:1;}
-  @keyframes fall { to { transform:translateY(110vh); opacity:0; } }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Ultimate Game Launcher</h1>
-  <input type="text" id="searchBar" placeholder="Search games..." onkeyup="filterGames()">
+  <!-- Header -->
+  <header>
+    <h1>Refined Web</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-  <div class="game-grid" id="gameGrid">
-    <!-- Game Cards -->
-  </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Welcome to Your Modern Website</h2>
+    <p>This template is clean, responsive, and fully customizable. Use it as a starting point for a refined web project with professional design standards.</p>
+  </section>
+
+  <!-- Grid Section -->
+  <section class="grid">
+    <div class="card">
+      <h3>Feature One</h3>
+      <p>Describe your first feature or service here.</p>
+      <a href="#">Learn More</a>
+    </div>
+    <div class="card">
+      <h3>Feature Two</h3>
+      <p>Describe your second feature or service here.</p>
+      <a href="#">Learn More</a>
+    </div>
+    <div class="card">
+      <h3>Feature Three</h3>
+      <p>Describe your third feature or service here.</p>
+      <a href="#">Learn More</a>
+    </div>
+    <div class="card">
+      <h3>Feature Four</h3>
+      <p>Describe your fourth feature or service here.</p>
+      <a href="#">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Refined Web. All rights reserved.
+  </footer>
 </div>
-
-<div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
-
-<script>
-  const games = [
-    {name:'Minecraft', link:'https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/'},
-    {name:'Time Shooter', link:'https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/'},
-    {name:'1v1.LOL', link:'https://ihackforfree02.github.io/1v1.lol/'},
-    {name:'2048', link:'https://schoolaccountforme.github.io/2048/'},
-    {name:'Gun Spin', link:'https://ihackforfree02.github.io/GunSpin/'},
-    {name:'Polytrack', link:'https://ihackforfree02.github.io/polytrack.3/'},
-    {name:'Stickman Hook', link:'https://ihackforfree02.github.io/Stickman-Hook/'},
-    {name:'Cluster Rush', link:'https://ihackforfree02.github.io/cluster/'},
-    {name:'Cookie Clicker', link:'https://ihackforfree02.github.io/cookie-clicker/'},
-    {name:'CSGO Clicker', link:'https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/'},
-    {name:'Dogeminer', link:'https://amazingwebsitesupersigma.github.io/dogeminer/'},
-    {name:'Tiny Fishing', link:'https://amazingwebsitesupersigma.github.io/tinyfishing/'},
-    {name:'Rooftop Snipers', link:'https://amazingwebsitesupersigma.github.io/rooftops/'},
-    {name:'Bitlife', link:'https://amazingwebsitesupersigma.github.io/bitlife/'},
-    {name:'Sausage Flip', link:'https://lnahtml.github.io/a6/sausage-flip'},
-    {name:'Tanuki Sunset', link:'https://amazingwebsitesupersigma.github.io/tanukisunset/'},
-    {name:'Drive Mad', link:'https://amazingwebsitesupersigma.github.io/drivemad/'},
-    {name:'Basket Random', link:'https://amazingwebsitesupersigma.github.io/basketrandom/'},
-    {name:'Tunnel Rush', link:'https://amazingwebsitesupersigma.github.io/tunnelrush/'},
-    {name:'Basketball Stars', link:'https://amazingwebsitesupersigma.github.io/basketballstars/'},
-    {name:'Drift Boss', link:'https://quiz-50.github.io/driving-games/drift-boss/'},
-    {name:'Gun Mayhem 2', link:'https://quiz-50.github.io/action-games/gun-mayhem-2/'},
-    {name:'Ballistic', link:'https://quiz-50.github.io/strategy-games/ballistic/'},
-    {name:'Subway Surfers', link:'https://sigmasigmapd2mods.github.io/subwaysurfers/'},
-    {name:'Geometry Dash', link:'https://amazingwebsitesupersigma.github.io/geodash/'},
-    {name:'FNAF', link:'https://irv77.github.io/hd_fnaf/1/'},
-    {name:'FNAF 2', link:'https://irv77.github.io/hd_fnaf/2/'},
-    {name:'FNAF 3', link:'https://irv77.github.io/hd_fnaf/3/'},
-    {name:'FNAF 4', link:'https://irv77.github.io/hd_fnaf/4/'},
-    {name:'FNAF World', link:'https://irv77.github.io/hd_fnaf/w/'},
-    {name:'FNAF Sister Location', link:'https://irv77.github.io/hd_fnaf/sl/'},
-    {name:'FNAF Pizzeria', link:'https://irv77.github.io/hd_fnaf/ps/'},
-    {name:'FNAF Custom Night', link:'https://irv77.github.io/hd_fnaf/ucn/'},
-    {name:'5 Nights at Diddys', link:'https://amazingwebsitesupersigma.github.io/hd_fnaf/1/'},
-    {name:'Pokemon Fusion', link:'https://fusioncalc.com/'},
-    {name:'Gambling', link:'https://www.transum.org/Maths/Activity/Probability/Gambling.asp'},
-    {name:'Gambling Better', link:'https://stake.whatthesigma.site/'},
-    {name:'Undertale', link:'https://sleepie.uk/undertale/save_states.html'},
-    {name:'10 Mins Till Dawn', link:'https://quiz-50.github.io/action-games/10-minutes-till-dawn/'},
-    {name:'UltraKill', link:'https://amazingwebsitesupersigma.github.io/UltraKill/'},
-    {name:'Deltarune', link:'https://amazingwebsitesupersigma.github.io/deltarune/'},
-    {name:'Buckshot Roulette', link:'https://amazingwebsitesupersigma.github.io/buckshot-roulette/'},
-    {name:'People Playground', link:'https://amazingwebsitesupersigma.github.io/People-Playground/'},
-    {name:'Track Racing', link:'https://ihackforfree02.github.io/TriggerRally/server/public/'}
-  ];
-
-  const grid = document.getElementById('gameGrid');
-  games.forEach(g => {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.textContent = g.name;
-    card.onclick = () => window.open(g.link,'_blank');
-    grid.appendChild(card);
-  });
-
-  function filterGames() {
-    const query = document.getElementById('searchBar').value.toLowerCase();
-    document.querySelectorAll('.game-card').forEach(card => {
-      card.style.display = card.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
-    });
-  }
-
-  function toggleChat() {
-    if(window.chatWindow && !window.chatWindow.closed) window.chatWindow.focus();
-    else window.chatWindow = window.open('https://communityhelp.linewize.org/','ChatWindow','width=400,height=600');
-  }
-
-  // Controller rain animation
-  const createController=()=>{const c=document.createElement('div');c.className='controller';c.textContent='🎮';c.style.left=`${Math.random()*100}vw`;c.style.animationDuration=`${3+Math.random()*2}s`;c.style.fontSize=`${1.5+Math.random()*2}rem`;document.body.appendChild(c);setTimeout(()=>c.remove(),6000);}
-  setInterval(createController,250);
-</script>
-
-<!-- Techno borders -->
-<div class="border-top"></div>
-<div class="border-right"></div>
-<div class="border-bottom"></div>
-<div class="border-left"></div>
-
-<!-- Background music -->
-<audio autoplay loop>
-  <source src="https://github.com/davidrobertwriter/davidrobertwriter.github.io/raw/refs/heads/main/Playground%20Rizz.mp3" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
