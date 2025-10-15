@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up | MR Games</title>
+<style>
+  body, html { height:100%; margin:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); display:flex; justify-content:center; align-items:center; color:#00ffff; }
+  .container { background: rgba(0,0,0,0.7); padding:40px; border-radius:12px; width:350px; box-shadow:0 6px 20px rgba(0,0,0,0.5); }
+  h1 { text-align:center; color:#f0db4f; text-shadow:0 0 10px #f0db4f,0 0 20px #f0db4f; margin-bottom:20px; }
+  input { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:2px solid #00ffff; background:#000; color:#00ffff; font-size:1rem; }
+  button { width:100%; padding:12px; margin-top:10px; border:none; border-radius:8px; background:#00ffff; color:#0f2027; font-weight:bold; cursor:pointer; font-size:1rem; box-shadow:0 0 12px #00ffff; }
+  button:hover { box-shadow:0 0 20px #00ffff; }
+  .message { text-align:center; margin-top:8px; font-size:0.9rem; color:#ff6666; }
+  .login-link { text-align:center; margin-top:12px; cursor:pointer; color:#00ffff; }
+  .login-link:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Sign Up</h1>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="text" id="username" placeholder="Username" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+  <button id="signUpBtn">Sign Up</button>
+  <div class="message" id="message"></div>
+  <div class="login-link" id="goLogin">Already have an account? Login</div>
+</div>
+
+<script>
+  const signUpBtn = document.getElementById('signUpBtn');
+  const message = document.getElementById('message');
+  const goLogin = document.getElementById('goLogin');
+
+  goLogin.addEventListener('click', () => { window.location.href='login.html'; });
+
+  signUpBtn.addEventListener('click', () => {
+    const email = document.getElementById('email').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+    if(!email || !username || !password || !confirmPassword){ message.textContent='Fill all fields.'; return; }
+    if(password !== confirmPassword){ message.textContent='Passwords do not match.'; return; }
+
+    let users = JSON.parse(localStorage.getItem('mrGamesUsers')) || [];
+    if(users.find(u=>u.email===email)){ message.textContent='Email already registered.'; return; }
+    if(users.find(u=>u.username===username)){ message.textContent='Username already taken.'; return; }
+
+    const newUser = { email, username, password };
+    users.push(newUser);
+    localStorage.setItem('mrGamesUsers', JSON.stringify(users));
+    localStorage.setItem('mrGamesCurrentUser', JSON.stringify(newUser));
+
+    alert('Account created successfully! Redirecting...');
+    window.location.href='index.html';
+  });
+</script>
+
+</body>
+</html>
