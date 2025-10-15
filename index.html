@@ -25,7 +25,6 @@
     align-items: center;
   }
 
-  /* Header */
   header {
     width: 100%;
     display: flex;
@@ -100,10 +99,10 @@
 
   .sidebar a:hover { color: #fff; }
 
-  /* Hero section placeholder */
+  /* Hero section */
   .hero {
     text-align: center;
-    margin-top: 100px;
+    margin-bottom: 50px;
   }
 
   .hero h2 {
@@ -118,6 +117,62 @@
     max-width: 600px;
     margin: 10px auto 0 auto;
   }
+
+  /* Games grid */
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
+  .game-card {
+    background: rgba(0,0,0,0.7);
+    border: 2px solid #00ffff;
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    color: #00ffff;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .game-card:hover {
+    background: #00ffff;
+    color: #001833;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00ffff, inset 0 0 20px #00ffff;
+  }
+
+  /* Chat button */
+  #chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #0078D7;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-family: sans-serif;
+    box-shadow: 0 0 10px #0078D7;
+    user-select: none;
+  }
+
+  /* Chat notification bubble */
+  #chat-notification {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: none;
+  }
+
 </style>
 </head>
 <body>
@@ -145,19 +200,58 @@
 <div class="container">
   <section class="hero">
     <h2>Welcome!</h2>
-    <p>This is your modern game launcher template. Press the menu icon on the top-right to access options.</p>
+    <p>Choose a game below and start playing instantly.</p>
   </section>
+
+  <!-- Games grid -->
+  <div class="games-grid">
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/', '_blank')">Minecraft</div>
+    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/', '_blank')">Time Shooter</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/1v1.lol/', '_blank')">1v1.LOL</div>
+    <div class="game-card" onclick="window.open('https://schoolaccountforme.github.io/2048/', '_blank')">2048</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/GunSpin/', '_blank')">Gun Spin</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/polytrack.3/', '_blank')">Polytrack</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/Stickman-Hook/', '_blank')">Stickman Hook</div>
+    <div class="game-card" onclick="window.open('https://ihackforfree02.github.io/cluster/', '_blank')">Cluster Rush</div>
+  </div>
+</div>
+
+<!-- Chat Button with notification -->
+<div id="chat-toggle" onclick="toggleChat()">
+  💬 Chat
+  <div id="chat-notification"></div>
 </div>
 
 <script>
   const sidebar = document.getElementById('sidebar');
+
   function toggleSidebar() {
-    if (sidebar.style.right === '0px') {
-      sidebar.style.right = '-250px';
+    if (sidebar.style.right === '0px') sidebar.style.right = '-250px';
+    else sidebar.style.right = '0px';
+  }
+
+  // Chat popup
+  let chatOpened = false;
+  const chatNotif = document.getElementById('chat-notification');
+
+  function toggleChat() {
+    if (!chatOpened) {
+      window.chatWindow = window.open(
+        'https://communityhelp.linewize.org/',
+        'ChatWindow',
+        'width=400,height=600'
+      );
+      chatOpened = true;
+      chatNotif.style.display = 'none';
+      if (!window.chatWindow) alert("Popup blocked! Allow popups to use chat.");
     } else {
-      sidebar.style.right = '0px';
+      if (window.chatWindow && !window.chatWindow.closed) window.chatWindow.focus();
+      else chatOpened = false;
     }
   }
+
+  // Example notification
+  setTimeout(() => { chatNotif.style.display = 'block'; }, 2000);
 </script>
 
 </body>
