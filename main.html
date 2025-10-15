@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main - Game Launcher</title>
+<style>
+  body, html{height:100%;margin:0;font-family:sans-serif;background:#0f2027;color:#00ffff;}
+  .container{max-width:1200px;margin:50px auto;padding:20px;}
+  .hidden{display:none;}
+  button{padding:10px 15px;border:none;border-radius:5px;background:#00ffff;color:#001833;font-weight:bold;cursor:pointer;}
+  #admin-panel{background:rgba(0,0,0,0.8);padding:20px;border-radius:10px;margin-top:20px;}
+  input{padding:6px;margin:5px;border-radius:5px;border:1px solid #00ffff;background:#001833;color:#00ffff;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome <span id="username-display"></span></h1>
+  <input type="text" id="admin-code" placeholder="Enter Admin Code">
+  <div id="admin-panel" class="hidden">
+    <h2>Admin Panel</h2>
+    <div id="users-list"></div>
+    <h3>Email a user</h3>
+    <input type="text" id="email-to" placeholder="User email">
+    <input type="text" id="email-subject" placeholder="Subject">
+    <input type="text" id="email-body" placeholder="Body">
+    <button onclick="sendEmail()">Send Email</button>
+  </div>
+</div>
+
+<script>
+  // Show username
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if(!currentUser){ window.location.href='index.html'; }
+  document.getElementById('username-display').textContent = currentUser.username;
+
+  const adminInput = document.getElementById('admin-code');
+  const adminPanel = document.getElementById('admin-panel');
+
+  let codeCount = 0;
+
+  adminInput.addEventListener('input', () => {
+    if(adminInput.value === '67'){ codeCount++; adminInput.value=''; }
+    if(codeCount >= 3){
+      adminPanel.classList.remove('hidden');
+      displayUsers();
+    }
+  });
+
+  function displayUsers(){
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const list = document.getElementById('users-list');
+    list.innerHTML = '<ul>' + users.map(u=>`<li>${u.username} (${u.email})</li>`).join('') + '</ul>';
+  }
+
+  function sendEmail(){
+    const email = document.getElementById('email-to').value;
+    const subject = document.getElementById('email-subject').value;
+    const body = document.getElementById('email-body').value;
+    if(email) window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+  }
+</script>
+
+</body>
+</html>
