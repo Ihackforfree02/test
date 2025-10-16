@@ -3,142 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mr Games | Unblocked Online Games</title>
-
-  <meta name="description" content="Play free unblocked games at Mr Games. No downloads, just fun—perfect for school, work, or home!">
-  <meta name="keywords" content="Mr Games, unblocked games, free games online, play games at school, HTML5 games, browser games, MrGames unblocked">
-
+  <title>MR GAMES | Unblocked Online Games</title>
+  <meta name="description" content="Play free unblocked games at MR GAMES. No downloads, just fun—perfect for school, work, or home!">
+  <meta name="keywords" content="MR GAMES, unblocked games, free games online, HTML5 games, browser games">
   <link rel="icon" href="favicon.ico" />
 
   <style>
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
-      background-attachment: fixed;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       color: #ffffff;
       overflow-x: hidden;
-      position: relative;
+    }
+
+    .hero {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-bottom: 2px solid #00ffff44;
+      box-shadow: 0 0 40px #00ffff33;
+    }
+
+    .hero iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .container {
-      text-align: center;
-      padding: 80px 20px;
-      max-width: 700px;
+      max-width: 1200px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      animation: fadeIn 2s ease-out forwards;
-      opacity: 0;
-      position: relative;
-      z-index: 10;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      padding: 40px 20px;
+      backdrop-filter: blur(12px);
     }
 
     h1 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      color: #f0db4f;
-      text-shadow: 0 0 10px #f0db4f, 0 0 20px #f0db4f;
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #f0db4f; }
-      to { text-shadow: 0 0 20px #f0db4f, 0 0 30px #f0db4f; }
+      font-size: 3rem;
+      text-align: center;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 10px;
     }
 
     p.subtitle {
-      margin-top: -20px;
-      font-size: 1.4rem;
-      color: #00ffff;
-      text-shadow: 0 0 8px #00ffff;
-    }
-
-    nav {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
-
-    nav a {
-      padding: 12px 20px;
+      text-align: center;
       font-size: 1.2rem;
-      color: #00ffff;
-      text-decoration: none;
-      border: 2px solid #00ffff;
-      border-radius: 30px;
-      box-shadow: 0 0 10px #00ffff;
-      transition: all 0.3s ease;
+      color: #f0db4f;
+      margin-bottom: 40px;
     }
 
-    nav a:hover {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00ffff33;
+      border-radius: 16px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px #00ffff22;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px #00ffff88;
+    }
+
+    .tile iframe {
+      width: 100%;
+      height: 120px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border: none;
+    }
+
+    .tile a {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #0f0f0f;
       background: #00ffff;
-      color: #0f2027;
-      box-shadow: 0 0 20px #00ffff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .tile a:hover {
+      background: #00cccc;
     }
 
     .settings-button,
     .partner-badge,
     #chat-toggle {
+      position: fixed;
+      z-index: 1000;
       font-weight: bold;
+      border-radius: 30px;
+      padding: 10px 20px;
       box-shadow: 0 0 12px #00ffff;
       transition: all 0.3s ease;
     }
 
-    .settings-button:hover,
-    .partner-badge:hover,
-    #chat-toggle:hover {
-      box-shadow: 0 0 20px #00ffff;
-      transform: scale(1.05);
-    }
-
     .settings-button {
-      position: fixed;
       top: 15px;
       right: 15px;
-      background-color: #00ffff;
-      color: #0f2027;
-      border: none;
-      border-radius: 50px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      z-index: 20;
-      text-decoration: none;
+      background: #00ffff;
+      color: #0f0f0f;
     }
 
     .partner-badge {
-      position: fixed;
       bottom: 20px;
       right: 20px;
       background: linear-gradient(135deg, #00ffff, #0078D7);
-      color: #0f2027;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 1rem;
-      text-decoration: none;
-      z-index: 1000;
+      color: #0f0f0f;
     }
 
     #chat-toggle {
-      position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #0078D7;
+      background: #0078D7;
       color: white;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      z-index: 1000;
-      font-family: sans-serif;
     }
 
     .rain-wrapper {
@@ -149,7 +138,7 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      z-index: 5;
+      z-index: 0;
     }
 
     .raindrop {
@@ -170,52 +159,32 @@
     }
   </style>
 </head>
-
 <body>
   <a href="settings.html" class="settings-button">⚙️ Settings</a>
-
   <div class="rain-wrapper" id="rain-wrapper"></div>
+
+  <div class="hero">
+    <iframe src="https://drive.google.com/uc?export=view&id=YOUR_HERO_IMAGE_ID"></iframe>
+  </div>
 
   <div class="container">
     <h1>MR GAMES</h1>
     <p class="subtitle">Welcome to the ultimate arcade experience</p>
-    <nav>
-      <a href="Games.html">Play</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      <a href="about_us.html">About</a>
-      <a href="record.html">Records</a>
-      <a href="use_full_links.html">Useful Links</a>
-      <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
-      <a href="Clash.html">Clash Picker</a>
-      <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
-      <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
-      <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
-    </nav>
+
+    <div class="grid">
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=GAME1_IMAGE_ID"></iframe><a href="Games.html">Play</a></div>
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=LEADERBOARD_IMAGE_ID"></iframe><a href="leaderboard.html">Leaderboard</a></div>
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=ABOUT_IMAGE_ID"></iframe><a href="about_us.html">About</a></div>
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=RECORD_IMAGE_ID"></iframe><a href="record.html">Records</a></div>
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=LINKS_IMAGE_ID"></iframe><a href="use_full_links.html">Useful Links</a></div>
+      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=HK_IMAGE_ID"></iframe><a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a></div>
+    </div>
   </div>
 
   <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
-
-  <a href="https://ezunblocktheopps.github.io/" class="partner-badge" target="_blank">
-    🤝 Partnered with Sigmi
-  </a>
-
-  <script src="cloak_panic.js"></script>
+  <a href="https://ezunblocktheopps.github.io/" class="partner-badge">🤝 Partnered with Sigmi</a>
 
   <script>
-    if (!location.pathname.includes('index.html') && location.pathname === '/') {
-      window.location.href = 'index.html';
-    }
-
-    function checkConnectivity() {
-      if (!navigator.onLine) {
-        alert("You're offline. Chat may not work.");
-      }
-    }
-
-    window.addEventListener('load', checkConnectivity);
-    window.addEventListener('online', () => alert("You're back online!"));
-    window.addEventListener('offline', () => alert("You've lost connection."));
-
     function toggleChat() {
       if (window.chatWindow && !window.chatWindow.closed) {
         window.chatWindow.focus();
@@ -232,24 +201,14 @@
     }
 
     const rainWrapper = document.getElementById('rain-wrapper');
-    const numDrops = 100;
-
-    for (let i = 0; i < numDrops; i++) {
+    for (let i = 0; i < 100; i++) {
       const drop = document.createElement('div');
       drop.classList.add('raindrop');
-
-      const delay = Math.random() * 5;
-      const duration = 2 + Math.random() * 3;
-      const left = Math.random() * 100;
-      const size = 1 + Math.random() * 2;
-      const height = 10 + size * 7;
-
-      drop.style.left = left + 'vw';
-      drop.style.width = size + 'px';
-      drop.style.height = height + 'px';
-      drop.style.animationDuration = duration + 's';
-      drop.style.animationDelay = delay + 's';
-
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.width = 1 + Math.random() * 2 + 'px';
+      drop.style.height = 10 + Math.random() * 10 + 'px';
+      drop.style.animationDuration = 2 + Math.random() * 3 + 's';
+      drop.style.animationDelay = Math.random() * 5 + 's';
       rainWrapper.appendChild(drop);
     }
   </script>
