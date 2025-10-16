@@ -25,17 +25,17 @@
       box-shadow: 0 0 40px #00ffff33;
     }
 
-    .hero iframe {
+    .hero img {
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
+      display: block;
     }
 
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 40px 20px;
-      backdrop-filter: blur(12px);
     }
 
     h1 {
@@ -74,12 +74,12 @@
       box-shadow: 0 0 30px #00ffff88;
     }
 
-    .tile iframe {
+    .tile img {
       width: 100%;
       height: 120px;
+      object-fit: cover;
       border-radius: 12px;
       margin-bottom: 10px;
-      border: none;
     }
 
     .tile a {
@@ -164,7 +164,7 @@
   <div class="rain-wrapper" id="rain-wrapper"></div>
 
   <div class="hero">
-    <iframe src="https://drive.google.com/uc?export=view&id=YOUR_HERO_IMAGE_ID"></iframe>
+    <img src="https://www.dreamstime.com/vibrant-retro-arcade-scene-neon-lights-futuristic-gaming-machines-room-s-style-digital-virtual-art-cyberpunk-background-image365915257" alt="Arcade Banner" />
   </div>
 
   <div class="container">
@@ -172,12 +172,42 @@
     <p class="subtitle">Welcome to the ultimate arcade experience</p>
 
     <div class="grid">
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=GAME1_IMAGE_ID"></iframe><a href="Games.html">Play</a></div>
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=LEADERBOARD_IMAGE_ID"></iframe><a href="leaderboard.html">Leaderboard</a></div>
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=ABOUT_IMAGE_ID"></iframe><a href="about_us.html">About</a></div>
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=RECORD_IMAGE_ID"></iframe><a href="record.html">Records</a></div>
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=LINKS_IMAGE_ID"></iframe><a href="use_full_links.html">Useful Links</a></div>
-      <div class="tile"><iframe src="https://drive.google.com/uc?export=view&id=HK_IMAGE_ID"></iframe><a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a></div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Leaderboard Icon" />
+        <a href="leaderboard.html">Leaderboard</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="About Us Icon" />
+        <a href="about_us.html">About</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Records Icon" />
+        <a href="record.html">Records</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/929/929416.png" alt="Useful Links Icon" />
+        <a href="use_full_links.html">Useful Links</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Nettle Web Icon" />
+        <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Clash Picker Icon" />
+        <a href="Clash.html">Clash Picker</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="MR GAMES+ BETA Icon" />
+        <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="MR GAMES GBA Icon" />
+        <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Hollow Knight Map Icon" />
+        <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
+      </div>
     </div>
   </div>
 
