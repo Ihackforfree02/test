@@ -36,79 +36,6 @@
       box-shadow: 0 0 12px #00ffff;
     }
 
-    .hero img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: block;
-      box-shadow: 0 0 40px #00ffff33;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-      margin-bottom: 10px;
-    }
-
-    p.subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #f0db4f;
-      margin-bottom: 40px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-    }
-
-    .tile {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #00ffff33;
-      border-radius: 16px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 0 20px #00ffff22;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .tile:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 30px #00ffff88;
-    }
-
-    .tile img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-
-    .tile a {
-      display: inline-block;
-      padding: 10px 20px;
-      color: #0f0f0f;
-      background: #00ffff;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    .tile a:hover {
-      background: #00cccc;
-    }
-
     .settings-button,
     .partner-badge,
     #chat-toggle {
@@ -169,6 +96,67 @@
         opacity: 0;
       }
     }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #f0db4f;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00ffff33;
+      border-radius: 16px;
+      padding: 30px 15px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffffff;
+      box-shadow: 0 0 20px #00ffff22;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px #00ffff88;
+    }
+
+    .tile a {
+      display: block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      color: #0f0f0f;
+      background: #00ffff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .tile a:hover {
+      background: #00cccc;
+    }
   </style>
 </head>
 <body>
@@ -183,57 +171,24 @@
   <a href="settings.html" class="settings-button">⚙️ Settings</a>
   <div class="rain-wrapper" id="rain-wrapper"></div>
 
-  <div class="hero">
-    <img src="https://wallpapercave.com/wp/wp11727135.jpg" alt="Arcade Banner" />
-  </div>
-
   <div class="container">
     <h1>MR GAMES</h1>
     <p class="subtitle">Welcome to the ultimate arcade experience</p>
 
     <div class="grid">
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Play Games" />
-        <a href="Games.html">Play</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Leaderboard" />
-        <a href="leaderboard.html">Leaderboard</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="About Us" />
-        <a href="about_us.html">About</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Records" />
-        <a href="record.html">Records</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/929/929416.png" alt="Useful Links" />
-        <a href="use_full_links.html">Useful Links</a>
-      </div>
-      <div class="tile">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Clash_Royale_logo.svg/512px-Clash_Royale_logo.svg.png" alt="Clash Picker" />
-        <a href="Clash.html">Clash Picker</a>
-      </div>
-      <div class="tile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Game_Boy_Advance_logo.svg" alt="MR GAMES GBA" />
-        <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
-      </div>
-      <div class="tile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Beta_icon.svg/512px-Beta_icon.svg.png" alt="MR GAMES+ BETA" />
-        <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
-      </div>
-      <div class="tile">
-        <img src="https://static.wikia.nocookie.net/hollowknight/images/2/2e/Map_Hallownest.png" alt="Hollow Knight Map" />
-        <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
-      </div>
-      <div class="tile">
-        <img src="https://avatars.githubusercontent.com/u/158768038?s=200&v=4" alt="Nettle Web" />
-        <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
-      </div>
+      <div class="tile">Play<a href="Games.html">Go</a></div>
+      <div class="tile">Leaderboard<a href="leaderboard.html">View</a></div>
+      <div class="tile">About Us<a href="about_us.html">Learn</a></div>
+      <div class="tile">Records<a href="record.html">Check</a></div>
+      <div class="tile">Useful Links<a href="use_full_links.html">Browse</a></div>
+      <div class="tile">Clash Picker<a href="Clash.html">Open</a></div>
+      <div class="tile">MR GAMES GBA<a href="https://ihackforfree02.github.io/games/">Launch</a></div>
+      <div class="tile">MR GAMES+ BETA<a href="https://ihackforfree02.github.io/mrgames-/">Try</a></div>
+      <div class="tile">Hollow Knight Map<a href="https://ihackforfree02.github.io/hollownight-sigma/">Explore</a></div>
+      <div class="tile">Nettle Web<a href="https://sigmasigmatoiletedge.github.io/">Visit</a></div>
     </div>
   </div>
+
   <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
   <a href="https://ezunblocktheopps.github.io/" class="partner-badge">🤝 Partnered with Sigmi</a>
 
