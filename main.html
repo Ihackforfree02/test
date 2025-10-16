@@ -4,32 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MR GAMES | Unblocked Online Games</title>
-  <meta name="description" content="Play free unblocked games at MR GAMES. No downloads, just fun—perfect for school, work, or home!">
-  <meta name="keywords" content="MR GAMES, unblocked games, free games online, HTML5 games, browser games">
   <link rel="icon" href="favicon.ico" />
-
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      background: var(--bg-gradient);
       color: #ffffff;
       overflow-x: hidden;
+      transition: background 0.5s ease;
     }
 
-    .hero {
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-      border-bottom: 2px solid #00ffff44;
-      box-shadow: 0 0 40px #00ffff33;
+    .background-picker {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+    }
+
+    .background-picker select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #00ffff;
+      color: #0f0f0f;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 0 12px #00ffff;
     }
 
     .hero img {
       width: 100%;
-      height: 100%;
+      height: 300px;
       object-fit: cover;
       display: block;
+      box-shadow: 0 0 40px #00ffff33;
     }
 
     .container {
@@ -160,11 +172,19 @@
   </style>
 </head>
 <body>
+  <div class="background-picker">
+    <select onchange="changeBackground(this.value)">
+      <option value="neon">Neon</option>
+      <option value="galaxy">Galaxy</option>
+      <option value="retro">Retro</option>
+    </select>
+  </div>
+
   <a href="settings.html" class="settings-button">⚙️ Settings</a>
   <div class="rain-wrapper" id="rain-wrapper"></div>
 
   <div class="hero">
-    <img src="https://www.dreamstime.com/vibrant-retro-arcade-scene-neon-lights-futuristic-gaming-machines-room-s-style-digital-virtual-art-cyberpunk-background-image365915257" alt="Arcade Banner" />
+    <img src="https://wallpapercave.com/wp/wp11727135.jpg" alt="Arcade Banner" />
   </div>
 
   <div class="container">
@@ -173,44 +193,47 @@
 
     <div class="grid">
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Leaderboard Icon" />
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Play Games" />
+        <a href="Games.html">Play</a>
+      </div>
+      <div class="tile">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Leaderboard" />
         <a href="leaderboard.html">Leaderboard</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="About Us Icon" />
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="About Us" />
         <a href="about_us.html">About</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Records Icon" />
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Records" />
         <a href="record.html">Records</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/929/929416.png" alt="Useful Links Icon" />
+        <img src="https://cdn-icons-png.flaticon.com/512/929/929416.png" alt="Useful Links" />
         <a href="use_full_links.html">Useful Links</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Nettle Web Icon" />
-        <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Clash Picker Icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Clash_Royale_logo.svg/512px-Clash_Royale_logo.svg.png" alt="Clash Picker" />
         <a href="Clash.html">Clash Picker</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="MR GAMES+ BETA Icon" />
-        <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
-      </div>
-      <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="MR GAMES GBA Icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Game_Boy_Advance_logo.svg" alt="MR GAMES GBA" />
         <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
       </div>
       <div class="tile">
-        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Hollow Knight Map Icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Beta_icon.svg/512px-Beta_icon.svg.png" alt="MR GAMES+ BETA" />
+        <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
+      </div>
+      <div class="tile">
+        <img src="https://static.wikia.nocookie.net/hollowknight/images/2/2e/Map_Hallownest.png" alt="Hollow Knight Map" />
         <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
+      </div>
+      <div class="tile">
+        <img src="https://avatars.githubusercontent.com/u/158768038?s=200&v=4" alt="Nettle Web" />
+        <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
       </div>
     </div>
   </div>
-
   <div id="chat-toggle" onclick="toggleChat()">💬 Chat</div>
   <a href="https://ezunblocktheopps.github.io/" class="partner-badge">🤝 Partnered with Sigmi</a>
 
@@ -227,6 +250,17 @@
         if (!window.chatWindow) {
           alert("Popup blocked! Please allow popups to use chat.");
         }
+      }
+    }
+
+    function changeBackground(theme) {
+      const root = document.documentElement;
+      if (theme === "neon") {
+        root.style.setProperty("--bg-gradient", "linear-gradient(135deg, #0f0f0f, #1a1a1a)");
+      } else if (theme === "galaxy") {
+        root.style.setProperty("--bg-gradient", "linear-gradient(to right, #1e3c72, #2a5298)");
+      } else if (theme === "retro") {
+        root.style.setProperty("--bg-gradient", "linear-gradient(to right, #ff416c, #ff4b2b)");
       }
     }
 
