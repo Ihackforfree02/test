@@ -1,241 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MR GAMES | Retro Neon Portal</title>
-  <link rel="icon" href="favicon.ico" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR GAMES – Retro Edition</title>
+
+  <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
 
   <style>
-    /* ========== ROOT COLORS ========== */
     :root {
-      --neon-cyan: #00faff;
-      --neon-pink: #ff2d95;
-      --neon-purple: #7d00ff;
-      --dark-bg: #0a0a0a;
+      --retro1: #ff007f;
+      --retro2: #ff4b2b;
+      --retro3: #ffbf00;
+      --retro4: #00eaff;
+      --retro-dark: #0a0014;
     }
 
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'VCR OSD Mono', sans-serif;
       color: white;
-      background: var(--dark-bg);
       overflow-x: hidden;
-    }
-
-    /* ========== RETRO GRID BACKGROUND ========== */
-    .retro-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -3;
       background: black;
     }
 
-    /* Grid floor */
-    .grid {
+    /* BACKGROUND */
+    .retro-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .retro-sky {
       position: absolute;
-      bottom: -10%;
-      width: 200%;
-      height: 70%;
-      background-image: 
-        linear-gradient(var(--neon-cyan) 2px, transparent 2px),
-        linear-gradient(90deg, var(--neon-cyan) 2px, transparent 2px);
-      background-size: 60px 60px;
-      transform: perspective(500px) rotateX(65deg);
-      animation: gridMove 7s linear infinite;
-      opacity: 0.4;
+      top: 0;
+      width: 100%;
+      height: 60vh;
+      background: linear-gradient(to bottom, #1b0034, #51005a, #ff007f);
+      animation: skyPulse 8s ease-in-out infinite;
+    }
+    @keyframes skyPulse {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+      100% { filter: brightness(1); }
     }
 
-    @keyframes gridMove {
-      0% { transform: perspective(500px) rotateX(65deg) translateY(0); }
-      100% { transform: perspective(500px) rotateX(65deg) translateY(60px); }
-    }
-
-    /* 80's SUN */
+    /* SUN */
     .sun {
       position: absolute;
-      top: 10%;
+      top: 8vh;
       left: 50%;
       transform: translateX(-50%);
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, #ffbf00 0%, #ff0066 50%, transparent 70%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #ffbf00, #ff007f);
       border-radius: 50%;
-      animation: sunPulse 3s ease-in-out infinite;
-      opacity: 0.85;
-      z-index: -2;
+      filter: blur(4px);
+      box-shadow: 0 0 80px #ff007f;
+      animation: sunGlow 3s ease-in-out infinite;
     }
-
-    @keyframes sunPulse {
+    @keyframes sunGlow {
       0% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.08); }
+      50% { transform: translateX(-50%) scale(1.05); }
       100% { transform: translateX(-50%) scale(1); }
     }
 
-    /* Scanlines */
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* GRID */
+    .grid {
+      position: absolute;
+      bottom: 0;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.04),
-        rgba(255,255,255,0.04) 2px,
-        rgba(0,0,0,0.1) 4px
-      );
-      z-index: 50;
-      mix-blend-mode: overlay;
+      height: 50vh;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(0,234,255,0.35) 1px, transparent 1px),
+        linear-gradient(to top, rgba(0,234,255,0.35) 1px, transparent 1px);
+      transform: perspective(400px) rotateX(75deg);
+      animation: gridMove 2s linear infinite;
+    }
+    @keyframes gridMove {
+      from { background-position-y: 0; }
+      to { background-position-y: 40px; }
     }
 
-    /* ========== NAVBAR / HAMBURGER ========== */
-    .nav-toggle {
+    /* NAVBAR */
+    .nav-container {
       position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 200;
-      width: 45px;
-      height: 35px;
+      width: 100%;
+      height: 60px;
+      top: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      z-index: 99;
+      border-bottom: 2px solid #ff007f;
+    }
+    .nav-title {
+      flex-grow: 1;
+      font-size: 1.8rem;
+      color: var(--retro3);
+      text-shadow: 0 0 12px var(--retro3);
+      letter-spacing: 2px;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
     }
-
-    .nav-toggle div {
-      width: 100%;
-      height: 6px;
-      background: var(--neon-cyan);
-      margin: 6px 0;
-      border-radius: 10px;
+    .hamburger div {
+      height: 4px;
+      background: #ffbf00;
+      border-radius: 4px;
       transition: 0.3s;
-      box-shadow: 0 0 10px var(--neon-cyan);
+      box-shadow: 0 0 6px #ffbf00;
     }
 
-    .nav-menu {
+    /* SIDEBAR (no more games.html included) */
+    .sidebar {
       position: fixed;
+      right: -260px;
       top: 0;
-      left: -260px;
       width: 260px;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
-      border-right: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 30px var(--neon-cyan);
-      transition: 0.4s;
-      padding-top: 80px;
-      z-index: 150;
+      height: 100vh;
+      background: rgba(10, 0, 20, 0.9);
+      border-left: 2px solid #ff007f;
+      backdrop-filter: blur(8px);
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      transition: 0.35s ease;
+      z-index: 999;
     }
-
-    .nav-menu a {
-      display: block;
-      padding: 20px;
+    .sidebar a {
+      color: #00eaff;
+      padding: 12px;
+      text-decoration: none;
       font-size: 1.2rem;
-      text-decoration: none;
-      color: var(--neon-cyan);
-      font-weight: bold;
-      text-shadow: 0 0 10px var(--neon-cyan);
-      transition: 0.3s;
-    }
-
-    .nav-menu a:hover {
-      background: rgba(0,255,255,0.15);
-      padding-left: 30px;
-    }
-
-    /* ========== MAIN TITLE ========== */
-    h1 {
+      border: 1px solid #00eaff55;
+      border-radius: 8px;
       text-align: center;
-      font-size: 4rem;
-      margin-top: 140px;
-      color: var(--neon-pink);
-      text-shadow:
-        0 0 15px var(--neon-pink),
-        0 0 40px var(--neon-purple),
-        0 0 80px var(--neon-purple);
+      transition: 0.25s;
+      text-shadow: 0 0 6px #00eaff;
     }
-
-    p.subtitle {
-      text-align: center;
-      margin-top: -20px;
-      font-size: 1.5rem;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 10px var(--neon-cyan);
-    }
-
-    /* ========== FEATURE CARDS ========== */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 35px;
-      margin-top: 50px;
-    }
-
-    .tile {
-      background: rgba(255,255,255,0.05);
-      border: 2px solid var(--neon-purple);
-      border-radius: 18px;
-      padding: 30px;
-      text-align: center;
-      font-size: 1.3rem;
-      box-shadow: 0 0 30px var(--neon-purple);
-      transition: 0.35s;
-    }
-
-    .tile:hover {
-      transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 0 50px var(--neon-cyan);
-      border-color: var(--neon-cyan);
-    }
-
-    .tile a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 26px;
-      border-radius: 30px;
-      background: var(--neon-cyan);
+    .sidebar a:hover {
+      background: #00eaff;
       color: black;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 0 15px var(--neon-cyan);
-      transition: 0.3s;
+      box-shadow: 0 0 25px #00eaff;
     }
 
-    .tile a:hover {
-      background: var(--neon-pink);
-      box-shadow: 0 0 20px var(--neon-pink);
+    /* HERO */
+    .hero {
+      margin-top: 160px;
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .hero h1 {
+      font-size: 4.8rem;
+      color: #ffbf00;
+      text-shadow: 0 0 25px #ffbf00, 0 0 50px #ff007f;
+      letter-spacing: 3px;
+      animation: titleFloat 4s infinite ease-in-out;
+    }
+    @keyframes titleFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      text-shadow: 0 0 12px #00eaff;
+      opacity: 0.9;
+    }
+    .hero button {
+      margin-top: 30px;
+      padding: 14px 36px;
+      background: #ff007f;
+      color: white;
+      border: none;
+      font-size: 1.4rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 25px #ff007f;
+      transition: 0.25s;
+    }
+    .hero button:hover {
+      background: #ff4b2b;
+      box-shadow: 0 0 35px #ff4b2b;
+      transform: scale(1.08);
     }
 
+    /* NEW SECTION – FEATURED */
+    .section {
+      margin: 60px auto;
+      max-width: 900px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.45);
+      border: 2px solid #ff007f77;
+      border-radius: 16px;
+      box-shadow: 0 0 25px #ff007f44;
+      animation: sectionFade 1.5s ease forwards;
+      opacity: 0;
+    }
+    @keyframes sectionFade {
+      to { opacity: 1; }
+    }
+    .section h2 {
+      color: var(--retro3);
+      font-size: 2.4rem;
+      text-shadow: 0 0 15px var(--retro3);
+      margin-bottom: 12px;
+    }
+    .section p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+      line-height: 1.7;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Retro Background -->
   <div class="retro-bg">
+    <div class="retro-sky"></div>
     <div class="sun"></div>
     <div class="grid"></div>
   </div>
-  <div class="scanlines"></div>
 
-  <!-- Hamburger -->
-  <div class="nav-toggle" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="nav-container">
+    <div class="nav-title">MR GAMES</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
   </div>
 
-  <!-- Menu -->
-  <div class="nav-menu" id="menu">
+  <div id="sidebar" class="sidebar">
+    <a href="#">Play Games</a>
     <a href="leaderboard.html">Leaderboard</a>
     <a href="about_us.html">About Us</a>
     <a href="record.html">Records</a>
@@ -247,25 +262,43 @@
     <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
   </div>
 
-  <!-- Page Header -->
-  <h1>MR GAMES</h1>
-  <p class="subtitle">Retro Neon Gaming Universe</p>
+  <div class="hero">
+    <h1>MR GAMES</h1>
+    <p>The Ultimate Retro Arcade Experience</p>
+    <button onclick="toggleMenu()">OPEN MENU</button>
+  </div>
 
-  <div class="container">
-    <div class="grid">
-      <div class="tile">Huge Game Library<a href="#">Enter</a></div>
-      <div class="tile">New Features Weekly<a href="#">Check</a></div>
-      <div class="tile">Retro Theme Picker<a href="#">Open</a></div>
-      <div class="tile">Community Chat<a href="#">Join</a></div>
-      <div class="tile">Leaderboard Stats<a href="#">View</a></div>
-      <div class="tile">Exclusive Tools<a href="#">Try</a></div>
-    </div>
+  <div class="section">
+    <h2>🔥 Retro Power</h2>
+    <p>
+      MR GAMES brings arcade classics and modern fan-made games together 
+      in a neon-soaked 80s world. Dripping neon, outrun vibes, and 
+      endless replayability.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🎮 More Games Than Ever</h2>
+    <p>
+      All your favourite games in one place — action, skill, strategy, 
+      retro, GBA ports, and exclusive MR GAMES creations.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Expanding Universe</h2>
+    <p>
+      With constant updates, added features, and new exclusive pages, 
+      MR GAMES keeps upgrading forever. Stay tuned for v5.0.
+    </p>
   </div>
 
   <script>
+    let menuOpen = false;
     function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.left = menu.style.left === "0px" ? "-260px" : "0px";
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.right = menuOpen ? "-260px" : "0px";
+      menuOpen = !menuOpen;
     }
   </script>
 
