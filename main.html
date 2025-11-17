@@ -77,7 +77,7 @@ body.menu-open .content-wrap { transform: translateX(260px); }
 /* SIDEBAR WITH LINK FLICKER */
 .sidebar {
   position: fixed;
-  left:-260px;
+  left:-260px; /* hidden by default */
   top:0;
   width:260px;
   height:100vh;
@@ -182,7 +182,6 @@ const games = [
   ["Cluster Rush","https://ihackforfree02.github.io/cluster/"],
   ["Cookie Clicker","https://ihackforfree02.github.io/cookie-clicker/"],
   ["CSGO Clicker","https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/"]
-  // add the rest as before
 ];
 
 const grid = document.getElementById("gamesGrid");
