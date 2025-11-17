@@ -85,6 +85,11 @@ body::after {
 .secondary-links a {color:#ffbf00; text-decoration:none; font-size:1.2rem; padding:8px 16px; border:1px solid #ffbf0055; border-radius:8px; text-shadow:0 0 8px #ffbf00; transition:0.25s;}
 .secondary-links a:hover {background:#ffbf00; color:black; box-shadow:0 0 20px #ffbf00; transform:scale(1.05);}
 
+/* BOTTOM LINKS */
+.bottom-links {margin-top:40px; padding:20px 0; text-align:center; display:flex; flex-wrap:wrap; justify-content:center; gap:18px;}
+.bottom-links a {color:#00eaff; text-decoration:none; font-size:1.2rem; padding:8px 14px; border:1px solid #00eaff55; border-radius:6px; text-shadow:0 0 6px #00eaff; transition:0.25s;}
+.bottom-links a:hover {background:#00eaff; color:black; box-shadow:0 0 20px #00eaff; transform:scale(1.05);}
+
 /* TIPS / TRIVIA */
 .tips {padding:60px 20px; text-align:center; color:#ff007f; text-shadow:0 0 12px #ff007f;}
 .tips h2 {font-size:2.8rem; margin-bottom:20px;}
@@ -136,6 +141,14 @@ body::after {
     <a href="use_full_links.html">Useful Links</a>
     <a href="leaderboard.html">Leaderboard</a>
     <a href="record.html">Records</a>
+  </div>
+
+  <div class="bottom-links">
+    <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
+    <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
+    <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
+    <a href="https://q6t1u8.ddx.edpuzzle.icu.cdn.cloudflare.net/">Working Proxy</a>
+    <a href="https://luminal.cfd.cdn.cloudflare.net/">Luminal</a>
   </div>
 
   <section class="tips">
@@ -211,19 +224,20 @@ const featuredGrid=document.getElementById("featuredGrid");
 
 // Top 4 featured
 games.slice(0,4).forEach(g=>{
-  const div=document.createElement("div");
-  div.className="feature-card";
+  const div=document.createElement('div');
+  div.className='feature-card';
   div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
   featuredGrid.appendChild(div);
 });
 
 // All games
 games.forEach(g=>{
-  const div=document.createElement("div");
-  div.className="game-card";
+  const div=document.createElement('div');
+  div.className='game-card';
   div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
   grid.appendChild(div);
 });
 </script>
+
 </body>
 </html>
