@@ -1,265 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MR GAMES | Unblocked Online Games</title>
-  <link rel="icon" href="favicon.ico" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR GAMES – Retro Edition</title>
+
+  <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
 
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      --neon: #00ffff;
+      --retro1: #ff007f;
+      --retro2: #ff4b2b;
+      --retro3: #ffbf00;
+      --retro4: #00eaff;
+      --retro-dark: #0a0014;
     }
 
-    /* --- GLOBAL --- */
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-gradient);
+      font-family: 'VCR OSD Mono', sans-serif;
       color: white;
-      overflow-x: hidden;
-      transition: background 0.5s ease;
+      overflow: hidden;
+      background: black;
     }
 
-    /* Smooth fade-in */
-    * {
-      transition: all 0.25s ease !important;
-    }
-
-    /* --- TOP UI ELEMENTS --- */
-    .background-picker {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 1000;
-    }
-
-    .background-picker select {
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: var(--neon);
-      color: black;
-      font-weight: bold;
-      border: none;
-      box-shadow: 0 0 12px var(--neon);
-    }
-
-    .floating-btn {
-      position: fixed;
-      z-index: 1000;
-      border-radius: 30px;
-      padding: 12px 22px;
-      font-weight: bold;
-      backdrop-filter: blur(7px);
-      box-shadow: 0 0 15px var(--neon);
-      cursor: pointer;
-      transform: translateY(0);
-    }
-
-    .floating-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px var(--neon);
-    }
-
-    .settings {
-      top: 15px;
-      right: 15px;
-      background: var(--neon);
-      color: black;
-    }
-
-    .partner {
-      bottom: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #00ffff, #0078D7);
-      color: black;
-    }
-
-    #chat-toggle {
-      bottom: 20px;
-      left: 20px;
-      background: #0078D7;
-      color: white;
-    }
-
-    /* --- RAIN EFFECT --- */
-    .rain-wrapper {
-      pointer-events: none;
+    /* BACKGROUND: RETRO OUTRUN STYLE */
+    .retro-bg {
       position: fixed;
       inset: 0;
+      z-index: -1;
       overflow: hidden;
-      z-index: 0;
     }
 
-    .raindrop {
+    /* Neon moving gradient sky */
+    .retro-sky {
       position: absolute;
-      top: -20px;
-      width: 2px;
-      background: linear-gradient(180deg, #00ffff, #0077aa);
+      top: 0;
+      width: 100%;
+      height: 60vh;
+      background: linear-gradient(to bottom, #1b0034, #51005a, #ff007f);
+      animation: skyPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes skyPulse {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+      100% { filter: brightness(1); }
+    }
+
+    /* Retro sun */
+    .sun {
+      position: absolute;
+      top: 8vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #ffbf00, #ff007f);
       border-radius: 50%;
-      opacity: 0.5;
-      animation: fall linear infinite;
-      filter: blur(0.5px);
+      filter: blur(4px);
+      box-shadow: 0 0 80px #ff007f;
+      animation: sunGlow 3s ease-in-out infinite;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
+    @keyframes sunGlow {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+      100% { transform: translateX(-50%) scale(1); }
     }
 
-    /* --- MAIN CONTENT --- */
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
+    /* Animated retro grid */
+    .grid {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 50vh;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(0,234,255,0.35) 1px, transparent 1px),
+        linear-gradient(to top, rgba(0,234,255,0.35) 1px, transparent 1px);
+      transform: perspective(400px) rotateX(75deg);
+      animation: gridMove 2s linear infinite;
     }
 
-    h1 {
-      font-size: 3.5rem;
-      color: var(--neon);
-      text-shadow: 0 0 15px var(--neon);
-      margin-bottom: 10px;
+    @keyframes gridMove {
+      from { background-position-y: 0; }
+      to { background-position-y: 40px; }
+    }
+
+    /* NAVBAR */
+    .nav-container {
+      position: fixed;
+      width: 100%;
+      height: 60px;
+      top: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      z-index: 99;
+      border-bottom: 2px solid #ff007f;
+    }
+
+    .nav-title {
+      flex-grow: 1;
+      font-size: 1.8rem;
+      color: var(--retro3);
+      text-shadow: 0 0 12px var(--retro3);
       letter-spacing: 2px;
     }
 
-    .subtitle {
-      font-size: 1.25rem;
-      color: #f0db4f;
-      opacity: 0.85;
-      margin-bottom: 45px;
-    }
-
-    /* --- GRID --- */
-    .grid {
-      display: grid;
-      gap: 35px;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      padding-bottom: 60px;
-    }
-
-    /* --- TILES --- */
-    .tile {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid #00ffff33;
-      border-radius: 18px;
-      padding: 35px 20px;
-      color: white;
-      font-size: 1.25rem;
-      font-weight: bold;
-      box-shadow: 0 0 20px #00ffff22;
-      backdrop-filter: blur(4px);
-      transform: translateY(0);
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
     }
 
-    .tile:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 0 35px #00ffff88;
-    }
-
-    .tile a {
-      display: block;
-      margin-top: 14px;
-      padding: 11px 22px;
-      border-radius: 30px;
-      text-decoration: none;
-      background: var(--neon);
-      color: black;
-      font-weight: bold;
+    .hamburger div {
+      height: 4px;
+      background: #ffbf00;
+      border-radius: 4px;
       transition: 0.3s;
+      box-shadow: 0 0 6px #ffbf00;
     }
 
-    .tile a:hover {
-      background: #00cccc;
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      right: -260px;
+      top: 0;
+      width: 260px;
+      height: 100vh;
+      background: rgba(10, 0, 20, 0.9);
+      border-left: 2px solid #ff007f;
+      backdrop-filter: blur(8px);
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      transition: 0.35s ease;
+      z-index: 999;
     }
+
+    .sidebar a {
+      color: #00eaff;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border: 1px solid #00eaff55;
+      border-radius: 8px;
+      text-align: center;
+      transition: 0.25s;
+      text-shadow: 0 0 6px #00eaff;
+    }
+
+    .sidebar a:hover {
+      background: #00eaff;
+      color: black;
+      box-shadow: 0 0 25px #00eaff;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 130px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: #ffbf00;
+      text-shadow: 0 0 25px #ffbf00, 0 0 50px #ff007f;
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      text-shadow: 0 0 10px #00eaff;
+      opacity: 0.9;
+    }
+
+    .hero button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #ff007f;
+      color: white;
+      border: none;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff007f;
+      transition: 0.25s;
+    }
+
+    .hero button:hover {
+      background: #ff4b2b;
+      box-shadow: 0 0 30px #ff4b2b;
+      transform: scale(1.05);
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Background Picker -->
-  <div class="background-picker">
-    <select onchange="changeBackground(this.value)">
-      <option value="neon">Neon</option>
-      <option value="galaxy">Galaxy</option>
-      <option value="retro">Retro</option>
-    </select>
+  <!-- RETRO BACKGROUND -->
+  <div class="retro-bg">
+    <div class="retro-sky"></div>
+    <div class="sun"></div>
+    <div class="grid"></div>
   </div>
 
-  <!-- Settings Button -->
-  <a href="settings.html" class="floating-btn settings">⚙️ Settings</a>
-
-  <!-- Rain -->
-  <div class="rain-wrapper" id="rain-wrapper"></div>
-
-  <!-- Main -->
-  <div class="container">
-    <h1>MR GAMES</h1>
-    <p class="subtitle">Welcome to the ultimate arcade experience</p>
-
-    <div class="grid">
-      <div class="tile">Play <a href="Games.html">Go</a></div>
-      <div class="tile">Leaderboard <a href="leaderboard.html">View</a></div>
-      <div class="tile">About Us <a href="about_us.html">Learn</a></div>
-      <div class="tile">Records <a href="record.html">Check</a></div>
-      <div class="tile">Useful Links <a href="use_full_links.html">Browse</a></div>
-      <div class="tile">Clash Picker <a href="Clash.html">Open</a></div>
-      <div class="tile">MR GAMES GBA <a href="https://ihackforfree02.github.io/games/">Launch</a></div>
-      <div class="tile">MR GAMES+ BETA <a href="https://ihackforfree02.github.io/mrgames-/">Try</a></div>
-      <div class="tile">Hollow Knight Map <a href="https://ihackforfree02.github.io/hollownight-sigma/">Explore</a></div>
-      <div class="tile">Nettle Web <a href="https://sigmasigmatoiletedge.github.io/">Visit</a></div>
+  <!-- NAVBAR -->
+  <div class="nav-container">
+    <div class="nav-title">MR GAMES</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
     </div>
   </div>
 
-  <!-- Chat -->
-  <div id="chat-toggle" class="floating-btn" onclick="toggleChat()">💬 Chat</div>
+  <!-- SIDEBAR -->
+  <div id="sidebar" class="sidebar">
+    <a href="Games.html">Play</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="about_us.html">About Us</a>
+    <a href="record.html">Records</a>
+    <a href="use_full_links.html">Useful Links</a>
+    <a href="Clash.html">Clash Picker</a>
+    <a href="https://ihackforfree02.github.io/games/">MR GAMES GBA</a>
+    <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
+    <a href="https://ihackforfree02.github.io/hollownight-sigma/">Hollow Knight Map</a>
+    <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
+  </div>
 
-  <!-- Partner -->
-  <a href="https://ezunblocktheopps.github.io/" class="floating-btn partner">🤝 Partnered with Sigmi</a>
+  <!-- HERO -->
+  <div class="hero">
+    <h1>MR GAMES</h1>
+    <p>Retro Arcade • Neon Lights • 80s Vibes</p>
+    <button onclick="toggleMenu()">OPEN MENU</button>
+  </div>
 
   <script>
-    function toggleChat() {
-      if (window.chatWindow && !window.chatWindow.closed) {
-        window.chatWindow.focus();
-      } else {
-        window.chatWindow = window.open(
-          "https://communityhelp.linewize.org/",
-          "ChatWindow",
-          "width=400,height=600"
-        );
-        if (!window.chatWindow) {
-          alert("Popup blocked! Please allow popups to use chat.");
-        }
-      }
-    }
+    let menuOpen = false;
 
-    function changeBackground(theme) {
-      const root = document.documentElement;
-      if (theme === "neon") {
-        root.style.setProperty("--bg-gradient", "linear-gradient(135deg, #0f0f0f, #1a1a1a)");
-      } else if (theme === "galaxy") {
-        root.style.setProperty("--bg-gradient", "linear-gradient(to right, #1e3c72, #2a5298)");
-      } else if (theme === "retro") {
-        root.style.setProperty("--bg-gradient", "linear-gradient(to right, #ff416c, #ff4b2b)");
-      }
-    }
-
-    /* Rain drops */
-    const rainWrapper = document.getElementById("rain-wrapper");
-    for (let i = 0; i < 110; i++) {
-      const drop = document.createElement("div");
-      drop.classList.add("raindrop");
-      drop.style.left = Math.random() * 100 + "vw";
-      drop.style.width = 1 + Math.random() * 2 + "px";
-      drop.style.height = 10 + Math.random() * 15 + "px";
-      drop.style.animationDuration = 2 + Math.random() * 3 + "s";
-      drop.style.animationDelay = Math.random() * 5 + "s";
-      rainWrapper.appendChild(drop);
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.right = menuOpen ? "-260px" : "0px";
+      menuOpen = !menuOpen;
     }
   </script>
+
 </body>
 </html>
