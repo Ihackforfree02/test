@@ -23,11 +23,12 @@ body {
 }
 
 .content-wrap {
-  transition: transform 0.4s ease;
   position: relative;
   z-index: 1;
+  transition: transform 0.4s ease;
 }
 
+/* Only shift content if menu is open */
 body.menu-open .content-wrap {
   transform: translateX(260px);
 }
@@ -49,11 +50,7 @@ body.menu-open .content-wrap {
   animation: skyPulse 8s ease-in-out infinite;
 }
 
-@keyframes skyPulse {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.3); }
-  100% { filter: brightness(1); }
-}
+@keyframes skyPulse { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
 
 .sun {
   position: absolute;
@@ -68,12 +65,7 @@ body.menu-open .content-wrap {
   box-shadow: 0 0 80px #ff007f;
   animation: sunGlow 3s ease-in-out infinite;
 }
-
-@keyframes sunGlow {
-  0% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.05); }
-  100% { transform: translateX(-50%) scale(1); }
-}
+@keyframes sunGlow { 0% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } 100% { transform: translateX(-50%) scale(1); } }
 
 /* TRIPPY GRID */
 .grid {
@@ -88,12 +80,7 @@ body.menu-open .content-wrap {
   transform: perspective(400px) rotateX(75deg);
   animation: gridMove 2s linear infinite, gridColorShift 4s infinite alternate;
 }
-
-@keyframes gridMove {
-  from { background-position-y: 0; }
-  to { background-position-y: 40px; }
-}
-
+@keyframes gridMove { from { background-position-y: 0; } to { background-position-y: 40px; } }
 @keyframes gridColorShift {
   0% { background-image:
     linear-gradient(to right, rgba(255,0,255,0.6) 1px, transparent 1px),
@@ -120,7 +107,6 @@ body.menu-open .content-wrap {
   z-index: 99;
   border-bottom: 2px solid #ff007f;
 }
-
 .nav-title {
   flex-grow: 1;
   font-size: 1.8rem;
@@ -149,7 +135,7 @@ body.menu-open .content-wrap {
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  right: -260px;
+  right: -260px; /* hidden by default */
   top: 0;
   width: 260px;
   height: 100vh;
@@ -316,13 +302,12 @@ body.menu-open .content-wrap {
   <div class="hero">
     <h1>MR GAMES</h1>
     <p>Retro Arcade • Neon Lights • 80s Vibes</p>
-    <button onclick="document.getElementById('sidebar').classList.toggle('open'); document.body.classList.toggle('menu-open');">OPEN MENU</button>
+    <button onclick="toggleMenu()">OPEN MENU</button>
   </div>
 
   <section class="games-section">
     <h2 class="games-title">All Games</h2>
     <div class="games-grid">
-      <!-- ALL GAMES FROM YOUR LIST -->
       <script>
       const games = [
         ["Minecraft","https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/"],
@@ -370,6 +355,7 @@ body.menu-open .content-wrap {
         ["Person Playground","https://amazingwebsitesupersigma.github.io/People-Playground/"],
         ["Track Racing","https://ihackforfree02.github.io/TriggerRally/server/public/"]
       ];
+
       const grid = document.querySelector(".games-grid");
       games.forEach(g => {
         const div = document.createElement("div");
@@ -378,7 +364,7 @@ body.menu-open .content-wrap {
         grid.appendChild(div);
       });
       </script>
-  </div>
+    </div>
   </section>
 
   <div class="footer">&copy; MR GAMES 2025</div>
@@ -388,10 +374,10 @@ body.menu-open .content-wrap {
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 
-menuBtn.addEventListener("click", () => {
+function toggleMenu() {
   sidebar.classList.toggle("open");
   document.body.classList.toggle("menu-open");
-});
+}
 </script>
 </body>
 </html>
