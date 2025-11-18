@@ -7,23 +7,23 @@
 <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
 <style>
 :root {
-  --retro1: #ff007f;
-  --retro2: #ff4b2b;
-  --retro3: #ffbf00;
-  --retro4: #00eaff;
-  --retro-dark: #0a0014;
+--retro1: #ff007f;
+--retro2: #ff4b2b;
+--retro3: #ffbf00;
+--retro4: #00eaff;
+--retro-dark: #0a0014;
 }
 
 /* BODY & BASIC */
 body {
-  margin:0;
-  font-family:'VCR OSD Mono',sans-serif;
-  color:white;
-  background:black;
-  overflow-x:hidden;
-  image-rendering: pixelated;
-  scroll-behavior: smooth;
-  position:relative;
+margin:0;
+font-family:'VCR OSD Mono',sans-serif;
+color:white;
+background:black;
+overflow-x:hidden;
+image-rendering: pixelated;
+scroll-behavior: smooth;
+position:relative;
 }
 
 /* RETRO BACKGROUND */
@@ -38,12 +38,12 @@ body {
 
 /* SCANLINES */
 body::after {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 2px);
-  z-index:5;
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 2px);
+z-index:5;
 }
 
 /* NAVBAR */
@@ -93,58 +93,9 @@ body::after {
 /* TIPS / TRIVIA */
 .tips {padding:60px 20px; text-align:center; color:#ff007f; text-shadow:0 0 12px #ff007f;}
 .tips h2 {font-size:2.8rem; margin-bottom:20px;}
-.tips p {max-width:700px; margin:auto; font-size:1.2rem; line-height:1.5;}
-
-/* FOOTER */
-.footer {text-align:center; padding:40px 0; font-family:'VCR OSD Mono',sans-serif; color:#ffbf00; text-shadow:0 0 12px #ffbf00;}
-
-/* FLOATING PARTICLES */
-.particle {position:absolute; width:3px; height:3px; border-radius:50%; opacity:0.8; animation:float 6s linear infinite;}
-@keyframes float {0%{transform:translateY(0);}100%{transform:translateY(-800px); opacity:0;}}
-</style>
-</head>
-<body>
-
-<div class="retro-bg">
-  <div class="retro-sky"></div>
-  <div class="sun"></div>
-  <div class="grid"></div>
+@@ -138,6 +143,14 @@
+<a href="record.html">Records</a>
 </div>
-
-<div class="nav-container">
-  <div class="nav-title">MR GAMES</div>
-</div>
-
-<div class="content-wrap">
-  <div class="hero">
-    <h1>MR GAMES</h1>
-    <p>Retro Arcade • Neon Lights • 80s Vibes • Pixel & Digital</p>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <section class="games-section">
-    <h2 class="games-title">All Games</h2>
-    <div class="games-grid" id="gamesGrid"></div>
-  </section>
-
-  <div class="secondary-links">
-    <a href="about_us.html">About Us</a>
-    <a href="use_full_links.html">Useful Links</a>
-    <a href="leaderboard.html">Leaderboard</a>
-    <a href="record.html">Records</a>
-  </div>
 
   <div class="bottom-links">
     <a href="https://ihackforfree02.github.io/mrgames-/">MR GAMES+ BETA</a>
@@ -154,91 +105,29 @@ body::after {
     <a href="https://luminal.cfd.cdn.cloudflare.net/">Luminal</a>
   </div>
 
-  <section class="tips">
-    <h2>Retro Arcade Tips & Trivia</h2>
-    <p>Did you know? The first arcade game, "Computer Space," was released in 1971. High scores were a badge of honor and neon signs often guided players to the coolest machines. Remember to take breaks, but never stop chasing that top score!</p>
-  </section>
-
-  <div class="footer">&copy; MR GAMES 2025</div>
-</div>
-
-<script>
-// Floating particles
-for(let i=0;i<80;i++){
-  const p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*window.innerWidth+'px';
-  p.style.top=Math.random()*window.innerHeight+'px';
-  p.style.background=['#ff007f','#ffbf00','#00eaff'][Math.floor(Math.random()*3)];
-  p.style.animationDuration=(4+Math.random()*6)+'s';
-  document.body.appendChild(p);
-}
-
-// Games list
-const games=[
-  ["Minecraft","https://ihackforfree02.github.io/Precision-Client-For-EaglerCraft/"],
-  ["Time Shooter","https://schoolaccountforme.github.io/Time-Shooter-3-SWAT/"],
-  ["1v1.LOL","https://ihackforfree02.github.io/1v1.lol/"],
-  ["2048","https://schoolaccountforme.github.io/2048/"],
-  ["Gun Spin","https://ihackforfree02.github.io/GunSpin/"],
-  ["Polytrack","https://ihackforfree02.github.io/polytrack.3/"],
-  ["Stickman Hook","https://ihackforfree02.github.io/Stickman-Hook/"],
-  ["Cluster Rush","https://ihackforfree02.github.io/cluster/"],
-  ["Cookie Clicker","https://ihackforfree02.github.io/cookie-clicker/"],
-  ["CSGO Clicker","https://ezunblocktheopps.github.io/ezunblocktheopp.github.io/"],
-  ["Dogeminer","https://amazingwebsitesupersigma.github.io/dogeminer/"],
-  ["Tiny Fishing","https://amazingwebsitesupersigma.github.io/tinyfishing/"],
-  ["Rooftop Snipers","https://amazingwebsitesupersigma.github.io/rooftops/"],
-  ["Bitlife","https://amazingwebsitesupersigma.github.io/bitlife/"],
-  ["Sausage Flip","https://lnahtml.github.io/a6/sausage-flip"],
-  ["Tanuki Sunset","https://amazingwebsitesupersigma.github.io/tanukisunset/"],
-  ["Drive Mad","https://amazingwebsitesupersigma.github.io/drivemad/"],
-  ["Basket Random","https://amazingwebsitesupersigma.github.io/basketrandom/"],
-  ["Tunnel Rush","https://amazingwebsitesupersigma.github.io/tunnelrush/"],
-  ["Basketball Stars","https://amazingwebsitesupersigma.github.io/basketballstars/"],
-  ["Drift Boss","https://quiz-50.github.io/driving-games/drift-boss/"],
-  ["Gun Mayhem 2","https://quiz-50.github.io/action-games/gun-mayhem-2/"],
-  ["Ballistic","https://quiz-50.github.io/strategy-games/ballistic/"],
-  ["Subway Surfers","https://sigmasigmapd2mods.github.io/subwaysurfers/"],
-  ["Geometry Dash","https://amazingwebsitesupersigma.github.io/geodash/"],
-  ["FNAF","https://irv77.github.io/hd_fnaf/1/"],
-  ["FNAF 2","https://irv77.github.io/hd_fnaf/2/"],
-  ["FNAF 3","https://irv77.github.io/hd_fnaf/3/"],
-  ["FNAF 4","https://irv77.github.io/hd_fnaf/4/"],
-  ["FNAF World","https://irv77.github.io/hd_fnaf/w/"],
-  ["FNAF Sister Location","https://irv77.github.io/hd_fnaf/sl/"],
-  ["FNAF Pizzaria","https://irv77.github.io/hd_fnaf/ps/"],
-  ["FNAF Custom Night","https://irv77.github.io/hd_fnaf/ucn/"],
-  ["5 Night at Diddys","https://amazingwebsitesupersigma.github.io/hd_fnaf/1/"],
-  ["Pokemon Fusion","https://fusioncalc.com/"],
-  ["Gambling","https://www.transum.org/Maths/Activity/Probability/Gambling.asp"],
-  ["Gambling Better","https://stake.whatthesigma.site/"],
-  ["Undertale","https://sleepie.uk/undertale/save_states.html"],
-  ["10 Mins Till Dawn","https://quiz-50.github.io/action-games/10-minutes-till-dawn/"],
-  ["UltraKill","https://amazingwebsitesupersigma.github.io/UltraKill/"],
-  ["Deltarune","https://amazingwebsitesupersigma.github.io/deltarune/"],
-  ["Buckshot Roulette","https://amazingwebsitesupersigma.github.io/buckshot-roulette/"],
-  ["Person Playground","https://amazingwebsitesupersigma.github.io/People-Playground/"],
-  ["Track Racing","https://ihackforfree02.github.io/TriggerRally/server/public/"]
-];
-
-const grid=document.getElementById("gamesGrid");
-const featuredGrid=document.getElementById("featuredGrid");
+<section class="tips">
+<h2>Retro Arcade Tips & Trivia</h2>
+<p>Did you know? The first arcade game, "Computer Space," was released in 1971. High scores were a badge of honor and neon signs often guided players to the coolest machines. Remember to take breaks, but never stop chasing that top score!</p>
+@@ -211,19 +224,20 @@
 
 // Top 4 featured
 games.slice(0,4).forEach(g=>{
+  const div=document.createElement("div");
+  div.className="feature-card";
   const div=document.createElement('div');
   div.className='feature-card';
-  div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
-  featuredGrid.appendChild(div);
+div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
+featuredGrid.appendChild(div);
 });
 
 // All games
 games.forEach(g=>{
+  const div=document.createElement("div");
+  div.className="game-card";
   const div=document.createElement('div');
   div.className='game-card';
-  div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
-  grid.appendChild(div);
+div.innerHTML=`<img src="https://via.placeholder.com/250x150?text=${encodeURIComponent(g[0])}" alt="${g[0]}"><a href="${g[1]}" target="_blank">${g[0]}</a>`;
+grid.appendChild(div);
 });
 </script>
 
